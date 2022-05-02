@@ -37,13 +37,13 @@ namespace QuanLyVatTu
             cmbCHINHANH.ValueMember = "TENSERVER";
         }
         
-        private Form CheckExists(Type ftype)
-        {
-            foreach (Form f in this.MdiChildren)
-                if (f.GetType() == ftype)
-                    return f;
-            return null;
-        }
+        //private Form CheckExists(Type ftype)
+        //{
+        //    foreach (Form f in this.MdiChildren)
+        //        if (f.GetType() == ftype)
+        //            return f;
+        //    return null;
+        //}
         private int KetNoiDatabaseGoc()
         {
             if (connPublisher != null && connPublisher.State == ConnectionState.Open)
@@ -77,16 +77,16 @@ namespace QuanLyVatTu
             //Program.currentLogin = Program.loginName;
             //Program.currentPassword = Program.loginPassword;
             String statement = "SP_DANGNHAP '" + Program.loginName + "'";// exec sp_DangNhap 'TP'
-            Program.srd = Program.ExecSqlDataReader(statement);
-            if (Program.srd == null)
+            Program.myReader = Program.ExecSqlDataReader(statement);
+            if (Program.myReader == null)
                 return;
             // đọc một dòng của myReader - điều này là hiển nhiên vì kết quả chỉ có 1 dùng duy nhất
-            Program.srd.Read();
+            Program.myReader.Read();
 
 
 
             /* Step 5*/
-            Program.userName = Program.srd.GetString(0);// lấy userName
+            Program.userName = Program.myReader.GetString(0);// lấy userName
             MessageBox.Show("ĐĂNG NHẬP");
             if (Convert.IsDBNull(Program.userName))
             {
@@ -131,11 +131,11 @@ namespace QuanLyVatTu
         }
 
        
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormDn_Load(object sender, EventArgs e)
         {
             // đặt sẵn mật khẩu để đỡ nhập lại nhiều lần
-            txtTaiKhoan.Text = "HN";// nguyen long - chi nhanh
-            txtMatKhau.Text = "1234";
+            //txtTaiKhoan.Text = "HN";// nguyen long - chi nhanh
+            //txtMatKhau.Text = "1234";
             if (KetNoiDatabaseGoc() == 0)
                 return;
             //Lấy 2 cái đầu tiên của danh sách

@@ -31,8 +31,8 @@ namespace QuanLyVatTu
         public static SqlConnection con = new SqlConnection();
         public static string connectionString = "";
         // lấy danh sách server phân mảnh.
-        public static string connectionStringPublisher = @"Data Source = DESKTOP-K1O601Q\SERVERMAIN; Initial Catalog = QLVT; Integrated Security = true";
-        public static SqlDataReader srd; // myRead
+        public static string connectionStringPublisher = @"Data Source = DESKTOP-2HMOH0N; Initial Catalog = QLVT; Integrated Security = true";
+        public static SqlDataReader myReader; // myRead
 
         /**********************************************
          * serverName: tên server sẽ kết nối tới
@@ -108,13 +108,47 @@ namespace QuanLyVatTu
                 return null;
             }
         }
+
+        public static DataTable ExecSqlDataTable(string cmd)
+        {
+            DataTable dt = new DataTable();
+            if (Program.con.State == ConnectionState.Closed)
+                Program.con.Open();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.Fill(dt);
+            con.Close();
+            return dt;
+        }
+
+        public static int ExecSqlNonQuery(string strLenh)
+        {
+            SqlCommand sqlCmd = new SqlCommand();
+            sqlCmd.CommandType = CommandType.Text;
+            sqlCmd.CommandTimeout = 600; // 10 phút
+            if (con.State == ConnectionState.Closed)
+                con.Open();
+            try
+            {
+                // yêu cầu sp chạy tự động bên csdl và không nhận kết quả trả về
+                sqlCmd.ExecuteNonQuery();
+                con.Close();
+                return 0;
+            }
+            catch(SqlException ex)
+            {
+                con.Close();
+                return ex.State; // trạng thái lỗi gửi từ RAISERROR trong SQL Server qua
+            }
+        }
+
         [STAThread]
         static void Main()
         {  
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormDn());
+            formMain = new FormMain();
+            Application.Run(formMain);
         }
     }
 }

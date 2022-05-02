@@ -38,6 +38,7 @@ namespace QuanLyVatTu
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmbCHINHANH = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.bntThoat = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaiKhoan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMatKhau.Properties)).BeginInit();
             this.panel1.SuspendLayout();
@@ -45,7 +46,7 @@ namespace QuanLyVatTu
             // 
             // btnDangNhap
             // 
-            this.btnDangNhap.Location = new System.Drawing.Point(119, 154);
+            this.btnDangNhap.Location = new System.Drawing.Point(119, 190);
             this.btnDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(100, 30);
@@ -57,10 +58,10 @@ namespace QuanLyVatTu
             // btnHienMatKhau
             // 
             this.btnHienMatKhau.AutoSize = true;
-            this.btnHienMatKhau.Location = new System.Drawing.Point(251, 160);
+            this.btnHienMatKhau.Location = new System.Drawing.Point(253, 159);
             this.btnHienMatKhau.Margin = new System.Windows.Forms.Padding(4);
             this.btnHienMatKhau.Name = "btnHienMatKhau";
-            this.btnHienMatKhau.Size = new System.Drawing.Size(113, 21);
+            this.btnHienMatKhau.Size = new System.Drawing.Size(138, 25);
             this.btnHienMatKhau.TabIndex = 1;
             this.btnHienMatKhau.Text = "Hiện mật khẩu";
             this.btnHienMatKhau.UseVisualStyleBackColor = true;
@@ -69,10 +70,10 @@ namespace QuanLyVatTu
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 94);
+            this.label1.Location = new System.Drawing.Point(27, 94);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 17);
+            this.label1.Size = new System.Drawing.Size(84, 21);
             this.label1.TabIndex = 2;
             this.label1.Text = "Tài khoản";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -82,7 +83,7 @@ namespace QuanLyVatTu
             this.txtTaiKhoan.Location = new System.Drawing.Point(119, 91);
             this.txtTaiKhoan.Margin = new System.Windows.Forms.Padding(4);
             this.txtTaiKhoan.Name = "txtTaiKhoan";
-            this.txtTaiKhoan.Size = new System.Drawing.Size(231, 20);
+            this.txtTaiKhoan.Size = new System.Drawing.Size(231, 22);
             this.txtTaiKhoan.TabIndex = 3;
             // 
             // txtMatKhau
@@ -92,22 +93,23 @@ namespace QuanLyVatTu
             this.txtMatKhau.Name = "txtMatKhau";
             this.txtMatKhau.Properties.PasswordChar = '*';
             this.txtMatKhau.Properties.UseSystemPasswordChar = true;
-            this.txtMatKhau.Size = new System.Drawing.Size(231, 20);
+            this.txtMatKhau.Size = new System.Drawing.Size(231, 22);
             this.txtMatKhau.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 127);
+            this.label2.Location = new System.Drawing.Point(27, 129);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 17);
+            this.label2.Size = new System.Drawing.Size(79, 21);
             this.label2.TabIndex = 5;
             this.label2.Text = "Mật khẩu";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.bntThoat);
             this.panel1.Controls.Add(this.cmbCHINHANH);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
@@ -118,7 +120,7 @@ namespace QuanLyVatTu
             this.panel1.Controls.Add(this.txtTaiKhoan);
             this.panel1.Location = new System.Drawing.Point(171, 38);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(499, 229);
+            this.panel1.Size = new System.Drawing.Size(477, 299);
             this.panel1.TabIndex = 6;
             // 
             // cmbCHINHANH
@@ -126,23 +128,32 @@ namespace QuanLyVatTu
             this.cmbCHINHANH.FormattingEnabled = true;
             this.cmbCHINHANH.Location = new System.Drawing.Point(119, 40);
             this.cmbCHINHANH.Name = "cmbCHINHANH";
-            this.cmbCHINHANH.Size = new System.Drawing.Size(231, 25);
+            this.cmbCHINHANH.Size = new System.Drawing.Size(231, 29);
             this.cmbCHINHANH.TabIndex = 0;
             this.cmbCHINHANH.SelectedIndexChanged += new System.EventHandler(this.cmbCHINHANH_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(38, 40);
+            this.label3.Location = new System.Drawing.Point(27, 43);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 17);
+            this.label3.Size = new System.Drawing.Size(85, 21);
             this.label3.TabIndex = 6;
             this.label3.Text = "Chi nhánh";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
+            // bntThoat
+            // 
+            this.bntThoat.Location = new System.Drawing.Point(253, 190);
+            this.bntThoat.Name = "bntThoat";
+            this.bntThoat.Size = new System.Drawing.Size(97, 30);
+            this.bntThoat.TabIndex = 7;
+            this.bntThoat.Text = "Thoát";
+            this.bntThoat.UseVisualStyleBackColor = true;
+            // 
             // FormDn
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1067, 588);
@@ -170,5 +181,6 @@ namespace QuanLyVatTu
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbCHINHANH;
         private System.Windows.Forms.Button btnDangNhap;
+        private System.Windows.Forms.Button bntThoat;
     }
 }
