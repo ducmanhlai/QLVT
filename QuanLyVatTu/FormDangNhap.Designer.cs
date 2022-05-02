@@ -29,10 +29,17 @@ namespace QuanLyVatTu
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // FormDangNhap
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(982, 450);
+            this.Name = "FormDangNhap";
             this.Text = "FormDangNhap";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

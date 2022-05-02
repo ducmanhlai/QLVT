@@ -38,20 +38,31 @@ namespace QuanLyVatTu
          * serverName: tên server sẽ kết nối tới
          * userName: tên userName
          * password: mật khẩu
+         * loginName: tên đăng nhập
+         * password: mật khẩu
         **********************************************/
 
         public static string serverName = "";
         public static string userName = "";
-        public static string password = "";
         public static string database = "QLVT";
+        public static string loginName = "";
+        public static string password = "";
 
 
         public static string remoteLogin = "HTKN"; // Để khi đã đăng nhập vào server phân mảnh và muốn 
         public static string remotePassword = "123456"; // truy cập qua sv phân mảnh khác bằng tài khoản HTKN
 
+
+        /*
+         * role: tên nhóm quyền truy cập: CongTy-ChiNhanh-User.
+         */
+        public static string role;
+        public static string nameNV;
+        public static int CN;
         /*các form của toàn dữ án cũng được coi như 1 một biến toàn cục*/
         public static FormMain formMain;
         public static FormNhanVien formNhanVien;
+        public static FormDangNhap formDangNhap;
 
         /// <summary>
         /// The main entry point for the application.
