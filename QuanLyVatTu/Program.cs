@@ -31,7 +31,7 @@ namespace QuanLyVatTu
         public static SqlConnection con = new SqlConnection();
         public static string connectionString = "";
         // lấy danh sách server phân mảnh.
-        public static string connectionStringPublisher = "Data Source = DESKTOP-2HMOH0N; Initial Catalog = QLVT; Integrated Security = true";
+        public static string connectionStringPublisher = @"Data Source = DESKTOP-K1O601Q\SERVERMAIN; Initial Catalog = QLVT; Integrated Security = true";
         public static SqlDataReader srd; // myRead
 
         /**********************************************
@@ -51,7 +51,7 @@ namespace QuanLyVatTu
 
         public static string remoteLogin = "HTKN"; // Để khi đã đăng nhập vào server phân mảnh và muốn 
         public static string remotePassword = "123456"; // truy cập qua sv phân mảnh khác bằng tài khoản HTKN
-
+        public static BindingSource bindingSource = new BindingSource();
 
         /*
          * role: tên nhóm quyền truy cập: CongTy-ChiNhanh-User.
@@ -62,18 +62,59 @@ namespace QuanLyVatTu
         /*các form của toàn dữ án cũng được coi như 1 một biến toàn cục*/
         public static FormMain formMain;
         public static FormNhanVien formNhanVien;
-        public static FormDangNhap formDangNhap;
+        public static FormDn formDn;
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        public static int KetNoi()
+        {
+            if (Program.con != null && Program.con.State == ConnectionState.Open)
+                Program.con.Close();
+            try
+            {
+                Program.connectionString = "Data Source=" + Program.serverName + ";Initial Catalog=" +
+                       Program.database + ";User ID=" +
+                       Program.loginName + ";password=" + Program.password;
+                Program.con.ConnectionString = Program.connectionString;
+
+                Program.con.Open();
+                return 1;
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nXem lại tài khoản và mật khẩu.\n " + e.Message, "", MessageBoxButtons.OK);
+                //Console.WriteLine(e.Message);
+                return 0;
+            }
+        }
+        public static SqlDataReader ExecSqlDataReader(String strLenh)
+        {
+            SqlDataReader myreader;
+            SqlCommand sqlcmd = new SqlCommand(strLenh, Program.con);
+            sqlcmd.CommandType = CommandType.Text;
+            if (Program.con.State == ConnectionState.Closed)
+                Program.con.Open();
+            try
+            {
+                myreader = sqlcmd.ExecuteReader(); return myreader;
+
+            }
+            catch (SqlException ex)
+            {
+                Program.con.Close();
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
         [STAThread]
         static void Main()
         {  
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormNhanVien());
+            Application.Run(new FormDn());
         }
     }
 }
