@@ -12,6 +12,9 @@ namespace QuanLyVatTu
 {
     public partial class FormNhanVien : Form
     {
+        int vitri = 0;
+        string macn = "";
+
         public FormNhanVien()
         {
             InitializeComponent();
@@ -45,6 +48,18 @@ namespace QuanLyVatTu
 
             nhanVienTableAdapter.Connection.ConnectionString = Program.connectionStringPublisher;
             this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
+            macn = ((DataRowView)bdsNV[0])["MACN"].ToString();
+            cbbChiNhanh.DataSource = Program.bindingSource;
+            cbbChiNhanh.DisplayMember = "TENCN";
+            cbbChiNhanh.ValueMember = "TENSERVER";
+            cbbChiNhanh.SelectedIndex = Program.CN;
+            cbbChiNhanh.Enabled = false;
+            if (Program.role == "CONGTY")
+            {
+                cbbChiNhanh.Enabled = true;
+                btnLamLai.Enabled = btnHieuChinh.Enabled = btnthem.Enabled = btnReset.Enabled = btnXoa.Enabled = btnLuu.Enabled = btnPhucHoi.Enabled = false;
+            }
+            
         }
 
         private void lUONGTextEdit_EditValueChanged(object sender, EventArgs e)

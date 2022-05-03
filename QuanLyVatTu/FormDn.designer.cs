@@ -36,9 +36,9 @@ namespace QuanLyVatTu
             this.txtMatKhau = new DevExpress.XtraEditors.TextEdit();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bntThoat = new System.Windows.Forms.Button();
             this.cmbCHINHANH = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.bntThoat = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaiKhoan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMatKhau.Properties)).BeginInit();
             this.panel1.SuspendLayout();
@@ -118,10 +118,19 @@ namespace QuanLyVatTu
             this.panel1.Controls.Add(this.btnDangNhap);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtTaiKhoan);
-            this.panel1.Location = new System.Drawing.Point(171, 38);
+            this.panel1.Location = new System.Drawing.Point(202, 99);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(477, 299);
+            this.panel1.Size = new System.Drawing.Size(522, 332);
             this.panel1.TabIndex = 6;
+            // 
+            // bntThoat
+            // 
+            this.bntThoat.Location = new System.Drawing.Point(253, 190);
+            this.bntThoat.Name = "bntThoat";
+            this.bntThoat.Size = new System.Drawing.Size(97, 30);
+            this.bntThoat.TabIndex = 7;
+            this.bntThoat.Text = "Thoát";
+            this.bntThoat.UseVisualStyleBackColor = true;
             // 
             // cmbCHINHANH
             // 
@@ -142,15 +151,6 @@ namespace QuanLyVatTu
             this.label3.Text = "Chi nhánh";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // bntThoat
-            // 
-            this.bntThoat.Location = new System.Drawing.Point(253, 190);
-            this.bntThoat.Name = "bntThoat";
-            this.bntThoat.Size = new System.Drawing.Size(97, 30);
-            this.bntThoat.TabIndex = 7;
-            this.bntThoat.Text = "Thoát";
-            this.bntThoat.UseVisualStyleBackColor = true;
-            // 
             // FormDn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -161,7 +161,7 @@ namespace QuanLyVatTu
             this.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDn";
-            this.Text = "Form1";
+            this.Text = "FormDangNhap";
             this.Load += new System.EventHandler(this.FormDn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtTaiKhoan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMatKhau.Properties)).EndInit();
@@ -182,5 +182,7 @@ namespace QuanLyVatTu
         private System.Windows.Forms.ComboBox cmbCHINHANH;
         private System.Windows.Forms.Button btnDangNhap;
         private System.Windows.Forms.Button bntThoat;
+
+        public object Appearance { get; private set; }
     }
 }

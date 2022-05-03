@@ -36,7 +36,7 @@ namespace QuanLyVatTu
             this.HoTen = new System.Windows.Forms.ToolStripStatusLabel();
             this.NHOM = new System.Windows.Forms.ToolStripStatusLabel();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.bntDangNhap = new DevExpress.XtraBars.BarButtonItem();
             this.bntNhanVien = new DevExpress.XtraBars.BarButtonItem();
             this.bntVatTu = new DevExpress.XtraBars.BarButtonItem();
             this.bntKho = new DevExpress.XtraBars.BarButtonItem();
@@ -51,11 +51,11 @@ namespace QuanLyVatTu
             this.bntDangXuat = new DevExpress.XtraBars.BarButtonItem();
             this.bntTaoTK = new DevExpress.XtraBars.BarButtonItem();
             this.bntThoat = new DevExpress.XtraBars.BarButtonItem();
-            this.rbTaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.pageTaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rbNhanVien = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.pageNhanVien = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rbBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.pageBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -76,7 +76,7 @@ namespace QuanLyVatTu
             this.statusStrip1.Location = new System.Drawing.Point(0, 476);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 17, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1245, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1162, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -104,7 +104,7 @@ namespace QuanLyVatTu
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
             this.ribbonControl1.SearchEditItem,
-            this.barButtonItem1,
+            this.bntDangNhap,
             this.bntNhanVien,
             this.bntVatTu,
             this.bntKho,
@@ -124,20 +124,21 @@ namespace QuanLyVatTu
             this.ribbonControl1.MaxItemId = 17;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.rbTaiKhoan,
-            this.rbNhanVien,
-            this.rbBaoCao});
-            this.ribbonControl1.Size = new System.Drawing.Size(1245, 183);
+            this.pageTaiKhoan,
+            this.pageNhanVien,
+            this.pageBaoCao});
+            this.ribbonControl1.Size = new System.Drawing.Size(1162, 193);
             this.ribbonControl1.Click += new System.EventHandler(this.ribbonControl1_Click);
             // 
-            // barButtonItem1
+            // bntDangNhap
             // 
-            this.barButtonItem1.Caption = "Đăng Nhập";
-            this.barButtonItem1.Id = 1;
-            this.barButtonItem1.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.symbol_check_icon;
-            this.barButtonItem1.LargeWidth = 100;
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bntDangNhap.Caption = "Đăng Nhập";
+            this.bntDangNhap.Id = 1;
+            this.bntDangNhap.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.symbol_check_icon;
+            this.bntDangNhap.LargeWidth = 100;
+            this.bntDangNhap.Name = "bntDangNhap";
+            this.bntDangNhap.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bntDangNhap.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bntDangNhap_ItemClick);
             // 
             // bntNhanVien
             // 
@@ -147,6 +148,7 @@ namespace QuanLyVatTu
             this.bntNhanVien.LargeWidth = 100;
             this.bntNhanVien.Name = "bntNhanVien";
             this.bntNhanVien.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bntNhanVien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bntNhanVien_ItemClick);
             // 
             // bntVatTu
             // 
@@ -202,7 +204,6 @@ namespace QuanLyVatTu
             this.bntCTPX.LargeWidth = 100;
             this.bntCTPX.Name = "bntCTPX";
             this.bntCTPX.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.bntCTPX.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bntCTPX_ItemClick);
             // 
             // barButtonItem2
             // 
@@ -245,6 +246,7 @@ namespace QuanLyVatTu
             this.bntDangXuat.LargeWidth = 100;
             this.bntDangXuat.Name = "bntDangXuat";
             this.bntDangXuat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bntDangXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bntDangXuat_ItemClick);
             // 
             // bntTaoTK
             // 
@@ -254,6 +256,7 @@ namespace QuanLyVatTu
             this.bntTaoTK.LargeWidth = 100;
             this.bntTaoTK.Name = "bntTaoTK";
             this.bntTaoTK.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bntTaoTK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bntTaoTK_ItemClick);
             // 
             // bntThoat
             // 
@@ -263,29 +266,30 @@ namespace QuanLyVatTu
             this.bntThoat.LargeWidth = 100;
             this.bntThoat.Name = "bntThoat";
             this.bntThoat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bntThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bntThoat_ItemClick);
             // 
-            // rbTaiKhoan
+            // pageTaiKhoan
             // 
-            this.rbTaiKhoan.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.pageTaiKhoan.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup3});
-            this.rbTaiKhoan.Name = "rbTaiKhoan";
-            this.rbTaiKhoan.Text = "Tài Khoản";
+            this.pageTaiKhoan.Name = "pageTaiKhoan";
+            this.pageTaiKhoan.Text = "Tài Khoản";
             // 
             // ribbonPageGroup3
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem1);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bntDangNhap);
             this.ribbonPageGroup3.ItemLinks.Add(this.bntDangXuat);
             this.ribbonPageGroup3.ItemLinks.Add(this.bntTaoTK);
             this.ribbonPageGroup3.ItemLinks.Add(this.bntThoat);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Quản lý tài khoản";
             // 
-            // rbNhanVien
+            // pageNhanVien
             // 
-            this.rbNhanVien.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.pageNhanVien.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
-            this.rbNhanVien.Name = "rbNhanVien";
-            this.rbNhanVien.Text = "Nhân Viên";
+            this.pageNhanVien.Name = "pageNhanVien";
+            this.pageNhanVien.Text = "Nhân Viên";
             // 
             // ribbonPageGroup1
             // 
@@ -296,12 +300,12 @@ namespace QuanLyVatTu
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Quản lý nhân viên";
             // 
-            // rbBaoCao
+            // pageBaoCao
             // 
-            this.rbBaoCao.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.pageBaoCao.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2});
-            this.rbBaoCao.Name = "rbBaoCao";
-            this.rbBaoCao.Text = "Báo Cáo";
+            this.pageBaoCao.Name = "pageBaoCao";
+            this.pageBaoCao.Text = "Báo Cáo";
             // 
             // ribbonPageGroup2
             // 
@@ -316,16 +320,19 @@ namespace QuanLyVatTu
             // 
             // FormMain
             // 
+            this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1245, 502);
-            this.Controls.Add(this.ribbonControl1);
+            this.ClientSize = new System.Drawing.Size(1162, 502);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.ribbonControl1);
             this.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
+            this.Ribbon = this.ribbonControl1;
             this.Text = " ";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
@@ -341,13 +348,13 @@ namespace QuanLyVatTu
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem bntDangNhap;
         private DevExpress.XtraBars.BarButtonItem bntNhanVien;
-        private DevExpress.XtraBars.Ribbon.RibbonPage rbNhanVien;
+        private DevExpress.XtraBars.Ribbon.RibbonPage pageNhanVien;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage rbBaoCao;
+        private DevExpress.XtraBars.Ribbon.RibbonPage pageBaoCao;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.Ribbon.RibbonPage rbTaiKhoan;
+        private DevExpress.XtraBars.Ribbon.RibbonPage pageTaiKhoan;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem bntVatTu;
         private DevExpress.XtraBars.BarButtonItem bntKho;

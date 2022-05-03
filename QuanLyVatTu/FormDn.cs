@@ -84,9 +84,6 @@ namespace QuanLyVatTu
             Program.myReader.Read();
             /* Step 5*/
             Program.userName = Program.myReader.GetString(0);// lấy userName
-            // Kiểm tra xem userName ??
-            Console.WriteLine(Program.userName);
-            /// 
             //MessageBox.Show("ĐĂNG NHẬP");
             if (Convert.IsDBNull(Program.userName))
             {

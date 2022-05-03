@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace QuanLyVatTu
 {
-    public partial class FormMain : Form
+    public partial class FormMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        public FormMain()
+        {
+            InitializeComponent();
+        }
+
+        // bắt sự kiện người dùng bấm 2 lần vào 1 form.
         private Form CheckExists(Type ftype)
         {
             foreach (Form f in this.MdiChildren)
@@ -19,6 +25,7 @@ namespace QuanLyVatTu
                     return f;
             return null;
         }
+
 
         public void HienThiMenu()
         {
@@ -40,17 +47,17 @@ namespace QuanLyVatTu
             }    
         }
 
-        public FormMain()
+        private void enabledBnt()
         {
-            InitializeComponent();
+            bntDangNhap.Enabled = false;
+            bntDangXuat.Enabled = true;
+            bntTaoTK.Enabled = true;
+            pageNhanVien.Visible = pageBaoCao.Visible = true;
+            if (Program.role == "USER")
+                bntTaoTK.Enabled = false;
         }
 
         private void bnt_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void bntCTPX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
         }
@@ -63,6 +70,43 @@ namespace QuanLyVatTu
         private void FormMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void bntDangNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = CheckExists(typeof(FormDn));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                FormDn form = new FormDn();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
+
+        private void bntThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
+        // Dispose đóng form con, thu gon rác
+        private void bntDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            foreach (Form f in this.MdiChildren)
+                f.Dispose();
+        }
+
+        private void bntTaoTK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+//            Form f = new FormTaoTK();
+//           f.Show();
+        }
+
+        private void bntNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = new FormNhanVien();
+            f.MdiParent = this;
+            f.Show();
         }
     }
 }
