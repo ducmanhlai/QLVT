@@ -55,6 +55,8 @@ namespace QuanLyVatTu
 
         /*
          * role: tên nhóm quyền truy cập: CongTy-ChiNhanh-User.
+         * nameNV: Họ tên nhân viên;
+         * CN: chi nhánh;
          */
         public static string role;
         public static string nameNV;
@@ -99,7 +101,6 @@ namespace QuanLyVatTu
             try
             {
                 myreader = sqlcmd.ExecuteReader(); return myreader;
-
             }
             catch (SqlException ex)
             {

@@ -162,7 +162,7 @@ namespace QuanLyVatTu
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDn";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FormDn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtTaiKhoan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMatKhau.Properties)).EndInit();
             this.panel1.ResumeLayout(false);

@@ -82,16 +82,23 @@ namespace QuanLyVatTu
                 return;
             // đọc một dòng của myReader - điều này là hiển nhiên vì kết quả chỉ có 1 dùng duy nhất
             Program.myReader.Read();
-
-
-
             /* Step 5*/
             Program.userName = Program.myReader.GetString(0);// lấy userName
-            MessageBox.Show("ĐĂNG NHẬP");
+            // Kiểm tra xem userName ??
+            Console.WriteLine(Program.userName);
+            /// 
+            //MessageBox.Show("ĐĂNG NHẬP");
             if (Convert.IsDBNull(Program.userName))
             {
                 MessageBox.Show("Tài khoản này không có quyền truy cập \n Hãy thử tài khoản khác", "Thông Báo", MessageBoxButtons.OK);
             }
+            Program.nameNV = Program.myReader.GetString(1);
+            Program.role = Program.myReader.GetString(2);
+            Program.myReader.Close();
+            Program.formMain.MANV.Text ="Mã Nhân Viên: " + Program.userName;
+            Program.formMain.HoTen.Text = "Họ Tên: " + Program.nameNV;
+            Program.formMain.NHOM.Text = "Nhóm: " +Program.role;
+            Program.formMain.HienThiMenu();
         }
         private void cmbCHINHANH_SelectedIndexChanged(object sender, EventArgs e)
         {

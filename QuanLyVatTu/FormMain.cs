@@ -20,6 +20,26 @@ namespace QuanLyVatTu
             return null;
         }
 
+        public void HienThiMenu()
+        {
+            MANV.Text = "Mã Nhân Viên: " + Program.userName;
+            HoTen.Text = "Họ và tên: " + Program.nameNV;
+            NHOM.Text = "Nhóm: " + Program.role;
+            // Phân quyền
+            if(Program.role == "CONGTY")
+            {
+                bntLapPhieu.Enabled = false;             
+            }
+            else if (Program.role == "CHINHANH")
+            {
+                bntLapPhieu.Enabled = false;
+            }  
+            else
+            {
+                bntLapPhieu.Enabled = false;
+            }    
+        }
+
         public FormMain()
         {
             InitializeComponent();
@@ -36,6 +56,11 @@ namespace QuanLyVatTu
         }
 
         private void ribbonControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
         {
 
         }

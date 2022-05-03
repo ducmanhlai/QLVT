@@ -40,7 +40,7 @@ namespace QuanLyVatTu
             this.bntNhanVien = new DevExpress.XtraBars.BarButtonItem();
             this.bntVatTu = new DevExpress.XtraBars.BarButtonItem();
             this.bntKho = new DevExpress.XtraBars.BarButtonItem();
-            this.bntPhieuXuat = new DevExpress.XtraBars.BarButtonItem();
+            this.bntLapPhieu = new DevExpress.XtraBars.BarButtonItem();
             this.bnt = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.bntCTPX = new DevExpress.XtraBars.BarButtonItem();
@@ -108,7 +108,7 @@ namespace QuanLyVatTu
             this.bntNhanVien,
             this.bntVatTu,
             this.bntKho,
-            this.bntPhieuXuat,
+            this.bntLapPhieu,
             this.bnt,
             this.barButtonItem3,
             this.bntCTPX,
@@ -120,7 +120,7 @@ namespace QuanLyVatTu
             this.bntTaoTK,
             this.bntThoat});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonControl1.MaxItemId = 17;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -166,14 +166,14 @@ namespace QuanLyVatTu
             this.bntKho.Name = "bntKho";
             this.bntKho.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
-            // bntPhieuXuat
+            // bntLapPhieu
             // 
-            this.bntPhieuXuat.Caption = "Lập Phiếu";
-            this.bntPhieuXuat.Id = 6;
-            this.bntPhieuXuat.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_edit_text_file_48;
-            this.bntPhieuXuat.LargeWidth = 100;
-            this.bntPhieuXuat.Name = "bntPhieuXuat";
-            this.bntPhieuXuat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bntLapPhieu.Caption = "Lập Phiếu";
+            this.bntLapPhieu.Id = 6;
+            this.bntLapPhieu.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_edit_text_file_48;
+            this.bntLapPhieu.LargeWidth = 100;
+            this.bntLapPhieu.Name = "bntLapPhieu";
+            this.bntLapPhieu.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // bnt
             // 
@@ -292,7 +292,7 @@ namespace QuanLyVatTu
             this.ribbonPageGroup1.ItemLinks.Add(this.bntNhanVien);
             this.ribbonPageGroup1.ItemLinks.Add(this.bntVatTu);
             this.ribbonPageGroup1.ItemLinks.Add(this.bntKho);
-            this.ribbonPageGroup1.ItemLinks.Add(this.bntPhieuXuat);
+            this.ribbonPageGroup1.ItemLinks.Add(this.bntLapPhieu);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Quản lý nhân viên";
             // 
@@ -323,9 +323,10 @@ namespace QuanLyVatTu
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.Text = " ";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -350,7 +351,7 @@ namespace QuanLyVatTu
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem bntVatTu;
         private DevExpress.XtraBars.BarButtonItem bntKho;
-        private DevExpress.XtraBars.BarButtonItem bntPhieuXuat;
+        private DevExpress.XtraBars.BarButtonItem bntLapPhieu;
         private DevExpress.XtraBars.BarButtonItem bnt;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem bntCTPX;
