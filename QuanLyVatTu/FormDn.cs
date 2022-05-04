@@ -68,21 +68,19 @@ namespace QuanLyVatTu
                 MessageBox.Show("Tài khoản & mật khẩu không thể bỏ trống", "Thông Báo", MessageBoxButtons.OK);
                 return;
             }
-            Program.loginName = txtTaiKhoan.Text.Trim();
-            Program.password = txtMatKhau.Text.Trim();
+            Program.loginName = txtTaiKhoan.Text;
+            Program.password = txtMatKhau.Text;
             if (Program.KetNoi() == 0)
                 return;
-            /* Step 3*/
             Program.CN = cmbCHINHANH.SelectedIndex;
-            //Program.currentLogin = Program.loginName;
-            //Program.currentPassword = Program.loginPassword;
+            Program.loginDN = Program.loginName;
+            Program.passworDN = Program.password;
             String statement = "SP_DANGNHAP '" + Program.loginName + "'";// exec sp_DangNhap 'TP'
             Program.myReader = Program.ExecSqlDataReader(statement);
             if (Program.myReader == null)
                 return;
             // đọc một dòng của myReader - điều này là hiển nhiên vì kết quả chỉ có 1 dùng duy nhất
             Program.myReader.Read();
-            /* Step 5*/
             Program.userName = Program.myReader.GetString(0);// lấy userName
             //MessageBox.Show("ĐĂNG NHẬP");
             if (Convert.IsDBNull(Program.userName))
@@ -91,11 +89,17 @@ namespace QuanLyVatTu
             }
             Program.nameNV = Program.myReader.GetString(1);
             Program.role = Program.myReader.GetString(2);
+
             Program.myReader.Close();
+            Program.con.Close();
+
             Program.formMain.MANV.Text ="Mã Nhân Viên: " + Program.userName;
             Program.formMain.HoTen.Text = "Họ Tên: " + Program.nameNV;
             Program.formMain.NHOM.Text = "Nhóm: " +Program.role;
             Program.formMain.HienThiMenu();
+
+            this.Visible = false;
+            Program.formMain.enabledBnt();
         }
         private void cmbCHINHANH_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -138,14 +142,15 @@ namespace QuanLyVatTu
         private void FormDn_Load(object sender, EventArgs e)
         {
             // đặt sẵn mật khẩu để đỡ nhập lại nhiều lần
-            //txtTaiKhoan.Text = "HN";// nguyen long - chi nhanh
-            //txtMatKhau.Text = "1234";
+            txtTaiKhoan.Text = "TT";// Trần Thanh- chi nhanh
+            txtMatKhau.Text = "123456";
             if (KetNoiDatabaseGoc() == 0)
                 return;
             //Lấy 2 cái đầu tiên của danh sách
             layDanhSachPhanManh("SELECT TOP 2 * FROM V_DS_PHANMANH");
             cmbCHINHANH.SelectedIndex = 0;
             cmbCHINHANH.SelectedIndex = 1;
+            
 
         }
 
@@ -161,5 +166,9 @@ namespace QuanLyVatTu
             }
         }
 
+        private void bntThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

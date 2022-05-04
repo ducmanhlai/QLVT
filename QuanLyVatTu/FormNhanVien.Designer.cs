@@ -71,7 +71,7 @@ namespace QuanLyVatTu
             this.datHangTableAdapter = new QuanLyVatTu.DSTableAdapters.DatHangTableAdapter();
             this.phieuNhapTableAdapter = new QuanLyVatTu.DSTableAdapters.PhieuNhapTableAdapter();
             this.phieuXuatTableAdapter = new QuanLyVatTu.DSTableAdapters.PhieuXuatTableAdapter();
-            this.nhanVienGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gcNhanVien = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -105,7 +105,7 @@ namespace QuanLyVatTu
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsNV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nhanVienGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcNhanVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -249,6 +249,7 @@ namespace QuanLyVatTu
             this.btnHieuChinh.Id = 2;
             this.btnHieuChinh.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_edit_text_file_48;
             this.btnHieuChinh.Name = "btnHieuChinh";
+            this.btnHieuChinh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHieuChinh_ItemClick);
             // 
             // btnXoa
             // 
@@ -256,13 +257,16 @@ namespace QuanLyVatTu
             this.btnXoa.Id = 3;
             this.btnXoa.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_denied_48;
             this.btnXoa.Name = "btnXoa";
+            this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
             // btnLuu
             // 
             this.btnLuu.Caption = "Lưu";
+            this.btnLuu.Enabled = false;
             this.btnLuu.Id = 4;
             this.btnLuu.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_save_48;
             this.btnLuu.Name = "btnLuu";
+            this.btnLuu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLuu_ItemClick);
             // 
             // btnPhucHoi
             // 
@@ -270,6 +274,7 @@ namespace QuanLyVatTu
             this.btnPhucHoi.Id = 5;
             this.btnPhucHoi.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.Undo_icon__1_;
             this.btnPhucHoi.Name = "btnPhucHoi";
+            this.btnPhucHoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhucHoi_ItemClick);
             // 
             // btnLamLai
             // 
@@ -284,7 +289,7 @@ namespace QuanLyVatTu
             this.btnReset.Id = 12;
             this.btnReset.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.Button_Refresh_icon;
             this.btnReset.Name = "btnReset";
-            this.btnReset.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+            this.btnReset.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReset_ItemClick);
             // 
             // btnIDSNV
             // 
@@ -299,6 +304,7 @@ namespace QuanLyVatTu
             this.btnThoat.Id = 10;
             this.btnThoat.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.inside_logout_icon;
             this.btnThoat.Name = "btnThoat";
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
             // bar2
             // 
@@ -395,6 +401,7 @@ namespace QuanLyVatTu
             this.cbbChiNhanh.Name = "cbbChiNhanh";
             this.cbbChiNhanh.Size = new System.Drawing.Size(524, 24);
             this.cbbChiNhanh.TabIndex = 1;
+            this.cbbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cbbChiNhanh_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -441,19 +448,19 @@ namespace QuanLyVatTu
             // 
             this.phieuXuatTableAdapter.ClearBeforeFill = true;
             // 
-            // nhanVienGridControl
+            // gcNhanVien
             // 
-            this.nhanVienGridControl.DataSource = this.bdsNV;
-            this.nhanVienGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.nhanVienGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.nhanVienGridControl.Location = new System.Drawing.Point(0, 180);
-            this.nhanVienGridControl.MainView = this.gridView1;
-            this.nhanVienGridControl.Margin = new System.Windows.Forms.Padding(4);
-            this.nhanVienGridControl.MenuManager = this.barManager1;
-            this.nhanVienGridControl.Name = "nhanVienGridControl";
-            this.nhanVienGridControl.Size = new System.Drawing.Size(1403, 275);
-            this.nhanVienGridControl.TabIndex = 9;
-            this.nhanVienGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gcNhanVien.DataSource = this.bdsNV;
+            this.gcNhanVien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gcNhanVien.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.gcNhanVien.Location = new System.Drawing.Point(0, 180);
+            this.gcNhanVien.MainView = this.gridView1;
+            this.gcNhanVien.Margin = new System.Windows.Forms.Padding(4);
+            this.gcNhanVien.MenuManager = this.barManager1;
+            this.gcNhanVien.Name = "gcNhanVien";
+            this.gcNhanVien.Size = new System.Drawing.Size(1403, 275);
+            this.gcNhanVien.TabIndex = 9;
+            this.gcNhanVien.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
@@ -468,7 +475,7 @@ namespace QuanLyVatTu
             this.colMACN,
             this.colTrangThaiXoa});
             this.gridView1.DetailHeight = 437;
-            this.gridView1.GridControl = this.nhanVienGridControl;
+            this.gridView1.GridControl = this.gcNhanVien;
             this.gridView1.Name = "gridView1";
             // 
             // colMANV
@@ -563,6 +570,7 @@ namespace QuanLyVatTu
             this.panelControl2.Controls.Add(mANVLabel);
             this.panelControl2.Controls.Add(this.txtMANV);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl2.Enabled = false;
             this.panelControl2.Location = new System.Drawing.Point(0, 455);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
@@ -680,7 +688,7 @@ namespace QuanLyVatTu
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1403, 725);
             this.Controls.Add(this.panelControl2);
-            this.Controls.Add(this.nhanVienGridControl);
+            this.Controls.Add(this.gcNhanVien);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -697,7 +705,7 @@ namespace QuanLyVatTu
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsNV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nhanVienGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcNhanVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
@@ -755,7 +763,7 @@ namespace QuanLyVatTu
         private System.Windows.Forms.TextBox txtTEN;
         private System.Windows.Forms.TextBox txtHO;
         private System.Windows.Forms.TextBox txtMANV;
-        private DevExpress.XtraGrid.GridControl nhanVienGridControl;
+        private DevExpress.XtraGrid.GridControl gcNhanVien;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colMANV;
         private DevExpress.XtraGrid.Columns.GridColumn colHO;

@@ -131,6 +131,7 @@ namespace QuanLyVatTu
             this.bntThoat.TabIndex = 7;
             this.bntThoat.Text = "Thoát";
             this.bntThoat.UseVisualStyleBackColor = true;
+            this.bntThoat.Click += new System.EventHandler(this.bntThoat_Click);
             // 
             // cmbCHINHANH
             // 

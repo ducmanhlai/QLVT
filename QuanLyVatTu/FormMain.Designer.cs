@@ -241,6 +241,7 @@ namespace QuanLyVatTu
             // bntDangXuat
             // 
             this.bntDangXuat.Caption = "Đăng Xuất";
+            this.bntDangXuat.Enabled = false;
             this.bntDangXuat.Id = 14;
             this.bntDangXuat.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_logout_48;
             this.bntDangXuat.LargeWidth = 100;
@@ -251,6 +252,7 @@ namespace QuanLyVatTu
             // bntTaoTK
             // 
             this.bntTaoTK.Caption = "Tạo Tài Khoản";
+            this.bntTaoTK.Enabled = false;
             this.bntTaoTK.Id = 15;
             this.bntTaoTK.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_add_48;
             this.bntTaoTK.LargeWidth = 100;
@@ -290,6 +292,7 @@ namespace QuanLyVatTu
             this.ribbonPageGroup1});
             this.pageNhanVien.Name = "pageNhanVien";
             this.pageNhanVien.Text = "Nhân Viên";
+            this.pageNhanVien.Visible = false;
             // 
             // ribbonPageGroup1
             // 
@@ -306,6 +309,7 @@ namespace QuanLyVatTu
             this.ribbonPageGroup2});
             this.pageBaoCao.Name = "pageBaoCao";
             this.pageBaoCao.Text = "Báo Cáo";
+            this.pageBaoCao.Visible = false;
             // 
             // ribbonPageGroup2
             // 

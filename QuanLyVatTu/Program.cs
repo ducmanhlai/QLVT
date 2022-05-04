@@ -51,6 +51,9 @@ namespace QuanLyVatTu
 
         public static string remoteLogin = "HTKN"; // Để khi đã đăng nhập vào server phân mảnh và muốn 
         public static string remotePassword = "123456"; // truy cập qua sv phân mảnh khác bằng tài khoản HTKN
+        public static string loginDN = "";
+        public static string passworDN = "";
+
         public static BindingSource bindingSource = new BindingSource();
 
         /*

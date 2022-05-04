@@ -47,7 +47,7 @@ namespace QuanLyVatTu
             }    
         }
 
-        private void enabledBnt()
+        public void enabledBnt()
         {
             bntDangNhap.Enabled = false;
             bntDangXuat.Enabled = true;
@@ -94,6 +94,9 @@ namespace QuanLyVatTu
         {
             foreach (Form f in this.MdiChildren)
                 f.Dispose();
+            Program.formMain.MANV.Text = "Mã Nhân Viên";
+            Program.formMain.HoTen.Text = "Họ Và Tên";
+            Program.formMain.NHOM.Text = "Nhóm";
         }
 
         private void bntTaoTK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -104,9 +107,15 @@ namespace QuanLyVatTu
 
         private void bntNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form f = new FormNhanVien();
-            f.MdiParent = this;
-            f.Show();
+            Form f = CheckExists(typeof(FormNhanVien));
+            if (f != null)
+                f.Activate();
+            else
+            { 
+                Form from = new FormNhanVien();
+                from.MdiParent = this;
+                from.Show(); 
+            }
         }
     }
 }
