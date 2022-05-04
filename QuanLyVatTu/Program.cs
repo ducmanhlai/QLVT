@@ -15,7 +15,7 @@ namespace QuanLyVatTu
     * Do đó, form khác sẽ không hiểu các biến của form đã đóng nữa. Để phục vụ nhu cầu
     * xuyên suốt thì phải khai báo tại đây
     * 
-    * Data Source= DESKTOP-2HMOH0N: tên server chủ
+    * Data Source= DESKTOP-2HMOH0N: tên server chủ, DESKTOP-K1O601Q\SERVERMAIN server của máy Mạnh
     * Initial Catalog=QLVT: tên cơ sở dữ liệu
     * Integrated Security=true: đăng nhập với chế độ Window Authentication
     * 
@@ -31,7 +31,7 @@ namespace QuanLyVatTu
         public static SqlConnection con = new SqlConnection();
         public static string connectionString = "";
         // lấy danh sách server phân mảnh.
-        public static string connectionStringPublisher = @"Data Source = DESKTOP-2HMOH0N; Initial Catalog = QLVT; Integrated Security = true";
+        public static string connectionStringPublisher = @"Data Source = DESKTOP-K1O601Q\SERVERMAIN; Initial Catalog = QLVT; Integrated Security = true";
         public static SqlDataReader myReader; // myRead
 
         /**********************************************
@@ -68,7 +68,7 @@ namespace QuanLyVatTu
         public static FormMain formMain;
         public static FormNhanVien formNhanVien;
         public static FormDn formDn;
-
+        public static FormKho formKho;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
