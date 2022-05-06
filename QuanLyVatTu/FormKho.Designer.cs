@@ -56,9 +56,11 @@ namespace QuanLyVatTu
             this.dS = new QuanLyVatTu.DS();
             this.BdsKho = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.cbbChiNhanh = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.GridKho = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMAKHO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTENKHO = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -77,7 +79,7 @@ namespace QuanLyVatTu
             ((System.ComponentModel.ISupportInitialize)(this.BdsKho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridKho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -89,29 +91,35 @@ namespace QuanLyVatTu
             // mAKHOLabel
             // 
             mAKHOLabel.AutoSize = true;
-            mAKHOLabel.Location = new System.Drawing.Point(57, 26);
+            mAKHOLabel.Font = new System.Drawing.Font("Times New Roman", 10.8F);
+            mAKHOLabel.Location = new System.Drawing.Point(76, 32);
+            mAKHOLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             mAKHOLabel.Name = "mAKHOLabel";
-            mAKHOLabel.Size = new System.Drawing.Size(47, 13);
+            mAKHOLabel.Size = new System.Drawing.Size(53, 17);
             mAKHOLabel.TabIndex = 0;
-            mAKHOLabel.Text = "MAKHO:";
+            mAKHOLabel.Text = "Mã kho";
             // 
             // tENKHOLabel
             // 
             tENKHOLabel.AutoSize = true;
-            tENKHOLabel.Location = new System.Drawing.Point(53, 65);
+            tENKHOLabel.Font = new System.Drawing.Font("Times New Roman", 10.8F);
+            tENKHOLabel.Location = new System.Drawing.Point(71, 80);
+            tENKHOLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             tENKHOLabel.Name = "tENKHOLabel";
-            tENKHOLabel.Size = new System.Drawing.Size(51, 13);
+            tENKHOLabel.Size = new System.Drawing.Size(56, 17);
             tENKHOLabel.TabIndex = 2;
-            tENKHOLabel.Text = "TENKHO:";
+            tENKHOLabel.Text = "Tên kho";
             // 
             // dIACHILabel
             // 
             dIACHILabel.AutoSize = true;
-            dIACHILabel.Location = new System.Drawing.Point(460, 26);
+            dIACHILabel.Font = new System.Drawing.Font("Times New Roman", 10.8F);
+            dIACHILabel.Location = new System.Drawing.Point(613, 32);
+            dIACHILabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             dIACHILabel.Name = "dIACHILabel";
-            dIACHILabel.Size = new System.Drawing.Size(47, 13);
+            dIACHILabel.Size = new System.Drawing.Size(50, 17);
             dIACHILabel.TabIndex = 4;
-            dIACHILabel.Text = "DIACHI:";
+            dIACHILabel.Text = "Địa chỉ";
             // 
             // barManager2
             // 
@@ -163,6 +171,7 @@ namespace QuanLyVatTu
             this.btnthem.Id = 0;
             this.btnthem.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_add_user_male_48;
             this.btnthem.Name = "btnthem";
+            this.btnthem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnthem_ItemClick);
             // 
             // btnHieuChinh
             // 
@@ -170,6 +179,7 @@ namespace QuanLyVatTu
             this.btnHieuChinh.Id = 2;
             this.btnHieuChinh.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_edit_text_file_48;
             this.btnHieuChinh.Name = "btnHieuChinh";
+            this.btnHieuChinh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHieuChinh_ItemClick);
             // 
             // btnXoa
             // 
@@ -185,6 +195,7 @@ namespace QuanLyVatTu
             this.btnLuu.Id = 4;
             this.btnLuu.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_save_48;
             this.btnLuu.Name = "btnLuu";
+            this.btnLuu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLuu_ItemClick);
             // 
             // btnPhucHoi
             // 
@@ -192,6 +203,7 @@ namespace QuanLyVatTu
             this.btnPhucHoi.Id = 5;
             this.btnPhucHoi.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.Undo_icon__1_;
             this.btnPhucHoi.Name = "btnPhucHoi";
+            this.btnPhucHoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhucHoi_ItemClick);
             // 
             // btnReset
             // 
@@ -199,6 +211,7 @@ namespace QuanLyVatTu
             this.btnReset.Id = 12;
             this.btnReset.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.Button_Refresh_icon;
             this.btnReset.Name = "btnReset";
+            this.btnReset.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReset_ItemClick);
             // 
             // btnThoat
             // 
@@ -235,15 +248,17 @@ namespace QuanLyVatTu
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager2;
-            this.barDockControl1.Size = new System.Drawing.Size(916, 77);
+            this.barDockControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControl1.Size = new System.Drawing.Size(1221, 77);
             // 
             // barDockControl2
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 511);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 650);
             this.barDockControl2.Manager = this.barManager2;
-            this.barDockControl2.Size = new System.Drawing.Size(916, 20);
+            this.barDockControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControl2.Size = new System.Drawing.Size(1221, 20);
             // 
             // barDockControl3
             // 
@@ -251,15 +266,17 @@ namespace QuanLyVatTu
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControl3.Location = new System.Drawing.Point(0, 77);
             this.barDockControl3.Manager = this.barManager2;
-            this.barDockControl3.Size = new System.Drawing.Size(0, 434);
+            this.barDockControl3.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 573);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(916, 77);
+            this.barDockControl4.Location = new System.Drawing.Point(1221, 77);
             this.barDockControl4.Manager = this.barManager2;
-            this.barDockControl4.Size = new System.Drawing.Size(0, 434);
+            this.barDockControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 573);
             // 
             // barButtonItem1
             // 
@@ -305,45 +322,75 @@ namespace QuanLyVatTu
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.textBox1);
+            this.panelControl1.Controls.Add(this.label2);
             this.panelControl1.Controls.Add(this.cbbChiNhanh);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 77);
-            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(5);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(916, 89);
+            this.panelControl1.Size = new System.Drawing.Size(1221, 110);
             this.panelControl1.TabIndex = 18;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 10.8F);
+            this.textBox1.Location = new System.Drawing.Point(812, 30);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(252, 17);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 10.8F);
+            this.label2.Location = new System.Drawing.Point(761, 31);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Mã ";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // cbbChiNhanh
             // 
             this.cbbChiNhanh.FormattingEnabled = true;
-            this.cbbChiNhanh.Location = new System.Drawing.Point(110, 24);
-            this.cbbChiNhanh.Margin = new System.Windows.Forms.Padding(4);
+            this.cbbChiNhanh.Location = new System.Drawing.Point(137, 30);
+            this.cbbChiNhanh.Margin = new System.Windows.Forms.Padding(5);
             this.cbbChiNhanh.Name = "cbbChiNhanh";
-            this.cbbChiNhanh.Size = new System.Drawing.Size(524, 21);
+            this.cbbChiNhanh.Size = new System.Drawing.Size(589, 21);
             this.cbbChiNhanh.TabIndex = 1;
+            this.cbbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cbbChiNhanh_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 32);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 10.8F);
+            this.label1.Location = new System.Drawing.Point(45, 31);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(71, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Chi Nhánh";
             // 
-            // gridControl1
+            // GridKho
             // 
-            this.gridControl1.DataSource = this.BdsKho;
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gridControl1.Location = new System.Drawing.Point(0, 166);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.MenuManager = this.barManager2;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(916, 200);
-            this.gridControl1.TabIndex = 19;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridKho.DataSource = this.BdsKho;
+            this.GridKho.Dock = System.Windows.Forms.DockStyle.Top;
+            this.GridKho.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.GridKho.Location = new System.Drawing.Point(0, 187);
+            this.GridKho.MainView = this.gridView1;
+            this.GridKho.Margin = new System.Windows.Forms.Padding(4);
+            this.GridKho.MenuManager = this.barManager2;
+            this.GridKho.Name = "GridKho";
+            this.GridKho.Size = new System.Drawing.Size(1221, 246);
+            this.GridKho.TabIndex = 19;
+            this.GridKho.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
@@ -352,7 +399,8 @@ namespace QuanLyVatTu
             this.colMAKHO,
             this.colTENKHO,
             this.colDIACHI});
-            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.DetailHeight = 431;
+            this.gridView1.GridControl = this.GridKho;
             this.gridView1.Name = "gridView1";
             // 
             // colMAKHO
@@ -386,38 +434,44 @@ namespace QuanLyVatTu
             this.panelControl2.Controls.Add(mAKHOLabel);
             this.panelControl2.Controls.Add(this.mAKHOTextEdit);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 366);
+            this.panelControl2.Location = new System.Drawing.Point(0, 433);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(916, 145);
+            this.panelControl2.Size = new System.Drawing.Size(1221, 217);
             this.panelControl2.TabIndex = 20;
             // 
             // dIACHITextEdit
             // 
             this.dIACHITextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BdsKho, "DIACHI", true));
-            this.dIACHITextEdit.Location = new System.Drawing.Point(525, 23);
+            this.dIACHITextEdit.Location = new System.Drawing.Point(700, 28);
+            this.dIACHITextEdit.Margin = new System.Windows.Forms.Padding(4);
             this.dIACHITextEdit.MenuManager = this.barManager2;
             this.dIACHITextEdit.Name = "dIACHITextEdit";
-            this.dIACHITextEdit.Size = new System.Drawing.Size(232, 20);
+            this.dIACHITextEdit.Size = new System.Drawing.Size(309, 20);
             this.dIACHITextEdit.TabIndex = 5;
             this.dIACHITextEdit.EditValueChanged += new System.EventHandler(this.dIACHITextEdit_EditValueChanged);
             // 
             // tENKHOTextEdit
             // 
             this.tENKHOTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BdsKho, "TENKHO", true));
-            this.tENKHOTextEdit.Location = new System.Drawing.Point(110, 62);
+            this.tENKHOTextEdit.Location = new System.Drawing.Point(147, 76);
+            this.tENKHOTextEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tENKHOTextEdit.MenuManager = this.barManager2;
             this.tENKHOTextEdit.Name = "tENKHOTextEdit";
-            this.tENKHOTextEdit.Size = new System.Drawing.Size(239, 20);
+            this.tENKHOTextEdit.Size = new System.Drawing.Size(319, 20);
             this.tENKHOTextEdit.TabIndex = 3;
+            this.tENKHOTextEdit.EditValueChanged += new System.EventHandler(this.tENKHOTextEdit_EditValueChanged);
             // 
             // mAKHOTextEdit
             // 
             this.mAKHOTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BdsKho, "MAKHO", true));
-            this.mAKHOTextEdit.Location = new System.Drawing.Point(110, 19);
+            this.mAKHOTextEdit.Location = new System.Drawing.Point(147, 23);
+            this.mAKHOTextEdit.Margin = new System.Windows.Forms.Padding(4);
             this.mAKHOTextEdit.MenuManager = this.barManager2;
             this.mAKHOTextEdit.Name = "mAKHOTextEdit";
-            this.mAKHOTextEdit.Size = new System.Drawing.Size(161, 20);
+            this.mAKHOTextEdit.Size = new System.Drawing.Size(215, 20);
             this.mAKHOTextEdit.TabIndex = 1;
+            this.mAKHOTextEdit.EditValueChanged += new System.EventHandler(this.mAKHOTextEdit_EditValueChanged);
             // 
             // KhoTA
             // 
@@ -439,17 +493,19 @@ namespace QuanLyVatTu
             // 
             // FormKho
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(916, 531);
+            this.ClientSize = new System.Drawing.Size(1221, 670);
             this.Controls.Add(this.panelControl2);
-            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.GridKho);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControl3);
             this.Controls.Add(this.barDockControl4);
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
+            this.Font = new System.Drawing.Font("Times New Roman", 10.8F);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormKho";
             this.Text = "FormKho";
             this.Load += new System.EventHandler(this.FormKho_Load);
@@ -459,7 +515,7 @@ namespace QuanLyVatTu
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridKho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
@@ -496,7 +552,7 @@ namespace QuanLyVatTu
         private DevExpress.XtraBars.BarButtonItem btnLamLai;
         private System.Windows.Forms.BindingSource BdsKho;
         private DS dS;
-        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.GridControl GridKho;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colMAKHO;
         private DevExpress.XtraGrid.Columns.GridColumn colTENKHO;
@@ -510,5 +566,7 @@ namespace QuanLyVatTu
         private DevExpress.XtraEditors.TextEdit tENKHOTextEdit;
         private DevExpress.XtraEditors.TextEdit mAKHOTextEdit;
         private DSTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
     }
 }

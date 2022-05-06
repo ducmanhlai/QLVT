@@ -219,5 +219,9 @@
   <ItemGroup>
     <None Include="Resources\icons8-cancel-48.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\SQL\SP\" />
+    <Folder Include="Resources\SQL\View\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

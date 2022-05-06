@@ -93,10 +93,13 @@ namespace QuanLyVatTu
         private void bntDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             foreach (Form f in this.MdiChildren)
+            {
                 f.Dispose();
+            } 
             Program.formMain.MANV.Text = "Mã Nhân Viên";
             Program.formMain.HoTen.Text = "Họ Và Tên";
             Program.formMain.NHOM.Text = "Nhóm";
+            Program.formMain.bntDangNhap.Enabled = true;
         }
 
         private void bntTaoTK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
