@@ -117,5 +117,18 @@ namespace QuanLyVatTu
                 from.Show(); 
             }
         }
+
+        private void bntKho_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = CheckExists(typeof(FormKho));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                Form form = new FormKho();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
     }
 }
