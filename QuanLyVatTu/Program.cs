@@ -31,7 +31,7 @@ namespace QuanLyVatTu
         public static SqlConnection con = new SqlConnection();
         public static string connectionString = "";
         // lấy danh sách server phân mảnh.
-        public static string connectionStringPublisher = @"Data Source = DESKTOP-K1O601Q\SERVERMAIN; Initial Catalog = QLVT; Integrated Security = true";
+        public static string connectionStringPublisher = @"Data Source = DESKTOP-2HMOH0N; Initial Catalog = QLVT; Integrated Security = true";
         public static SqlDataReader myReader; // myRead
 
         /**********************************************
@@ -68,7 +68,6 @@ namespace QuanLyVatTu
         public static FormMain formMain;
         public static FormNhanVien formNhanVien;
         public static FormDn formDn;
-        public static FormKho formKho;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

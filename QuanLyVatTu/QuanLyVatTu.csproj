@@ -68,12 +68,6 @@
     <Compile Include="FormDn.designer.cs">
       <DependentUpon>FormDn.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormKho.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormKho.Designer.cs">
-      <DependentUpon>FormKho.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +82,12 @@
       <DependentUpon>FormNhanVien.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="FormVatTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVatTu.Designer.cs">
+      <DependentUpon>FormVatTu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QLVTDataSet.Designer.cs">
@@ -98,15 +98,15 @@
     <EmbeddedResource Include="FormDn.resx">
       <DependentUpon>FormDn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormKho.resx">
-      <DependentUpon>FormKho.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNhanVien.resx">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVatTu.resx">
+      <DependentUpon>FormVatTu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

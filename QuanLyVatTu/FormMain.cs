@@ -113,7 +113,7 @@ namespace QuanLyVatTu
             else
             { 
                 Form from = new FormNhanVien();
-                from.MdiParent = this;
+//                from.MdiParent = this;
                 from.Show(); 
             }
         }

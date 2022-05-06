@@ -220,23 +220,52 @@ namespace QuanLyVatTu
             }
             // Viết sp kiểm tra mã trùng trên các phân mảnh
             // Luong thỏa miềm giá trị
-            try
+            /*
+            * Thực thi sp_TimNhanVien
+            * declare @status int
+            * exec @status = SP_TimNhanVien 3
+            * select @status
+            */
+            string strlenh = "declare @status int "
+                            + "exec @status = SP_TraCuuNhanVien " +
+                            txtMANV.Text
+                            + " select @status";
+            Program.myReader = Program.ExecSqlDataReader(strlenh);
+            Program.myReader.Read();
+            int status = int.Parse(Program.myReader.GetValue(0).ToString());
+            Program.myReader.Close();
+            //if(lUONGTextEdit. > 0)
+            // Viết sp kiểm tra mã trùng trên các phân mảnh
+            // Luong thỏa miềm giá trị
+            if (status == 1)
             {
-                // kết thúc quá trình hiệu chỉnh
-                bdsNV.EndEdit();
-                bdsNV.ResetCurrentItem();
-                this.nhanVienTableAdapter.Connection.ConnectionString = Program.connectionString;
-                this.nhanVienTableAdapter.Fill(this.dS.NhanVien);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Lỗi ghi nhân viên!" + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Mã nhân viên này đã tồn tại!", "", MessageBoxButtons.OK);
                 return;
+            }
+            else
+            {
+                if (MessageBox.Show("Bạn có muốn lưu nhân viên này?", "Xác Nhận",
+                MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    try
+                    {
+                        // kết thúc quá trình hiệu chỉnh
+                        bdsNV.EndEdit();
+                        bdsNV.ResetCurrentItem();
+                        this.nhanVienTableAdapter.Connection.ConnectionString = Program.connectionString;
+                        this.nhanVienTableAdapter.Update(this.dS.NhanVien);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi ghi nhân viên!" + ex.Message, "", MessageBoxButtons.OK);
+                        return;
+                    }
+                }
             }
             gcNhanVien.Enabled = true;
             btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnThoat.Enabled = btnIDSNV.Enabled = btnReset.Enabled = true;
             btnPhucHoi.Enabled = btnLuu.Enabled = false;
-            gcNhanVien.Enabled = false;
+            //gcNhanVien.Enabled = false;
         }
 
         private void cbbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
