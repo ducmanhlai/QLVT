@@ -121,7 +121,7 @@ namespace QuanLyVatTu
             this.bntThoat});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonControl1.MaxItemId = 17;
+            this.ribbonControl1.MaxItemId = 18;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.pageTaiKhoan,
@@ -177,6 +177,7 @@ namespace QuanLyVatTu
             this.bntLapPhieu.LargeWidth = 100;
             this.bntLapPhieu.Name = "bntLapPhieu";
             this.bntLapPhieu.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bntLapPhieu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bntLapPhieu_ItemClick);
             // 
             // bnt
             // 

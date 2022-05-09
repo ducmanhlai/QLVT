@@ -39,11 +39,11 @@ namespace QuanLyVatTu
             }
             else if (Program.role == "CHINHANH")
             {
-                bntLapPhieu.Enabled = false;
+                bntLapPhieu.Enabled = true;
             }  
             else
             {
-                bntLapPhieu.Enabled = false;
+                bntLapPhieu.Enabled = true;
             }    
         }
 
@@ -129,6 +129,19 @@ namespace QuanLyVatTu
             else
             {
                 Form form = new FormKho();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
+
+        private void bntLapPhieu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = CheckExists(typeof(FormDatHang));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                Form form = new FormDatHang();
                 form.MdiParent = this;
                 form.Show();
             }

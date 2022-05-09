@@ -27,6 +27,12 @@ namespace QuanLyVatTu
             dS.EnforceConstraints = false;
             KhoTA.Connection.ConnectionString = Program.connectionString;
             this.KhoTA.Fill(this.dS.Kho);
+            datHangTableAdapter.Connection.ConnectionString = Program.connectionString;
+            this.datHangTableAdapter.Fill(this.dS.DatHang);
+            phieuNhapTableAdapter.Connection.ConnectionString = Program.connectionString;
+            this.phieuNhapTableAdapter.Fill(this.dS.PhieuNhap);
+            phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
+            this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
             macn = ((DataRowView)BdsKho[0])["MACN"].ToString();
             textBox1.Text = macn;
             cbbChiNhanh.DataSource = Program.bindingSource;
@@ -39,7 +45,6 @@ namespace QuanLyVatTu
                 cbbChiNhanh.Enabled = true;
                 btnLamLai.Enabled = btnHieuChinh.Enabled = btnthem.Enabled = btnXoa.Enabled = btnLuu.Enabled = btnPhucHoi.Enabled = false;
             }
-
         }
 
         private void dIACHITextEdit_EditValueChanged(object sender, EventArgs e)
@@ -63,6 +68,20 @@ namespace QuanLyVatTu
 
         private void btnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (txtMaKho.Text.Trim() == "")
+            {
+                MessageBox.Show("Mã kho không được bỏ trống", "", MessageBoxButtons.OK);
+                txtMaKho.Focus();
+                return;
+            }  
+            if(txtTenKho.Text.Trim()=="")
+            {
+                MessageBox.Show("Tên kho không được bỏ trống", "", MessageBoxButtons.OK);
+                txtMaKho.Focus();
+                return;
+
+            }    
+               
 
         }
 
@@ -81,9 +100,16 @@ namespace QuanLyVatTu
         {
             try
             {
+                KhoTA.Connection.ConnectionString = Program.connectionString;
                 this.KhoTA.Fill(this.dS.Kho);
+                datHangTableAdapter.Connection.ConnectionString = Program.connectionString;
+                this.datHangTableAdapter.Fill(this.dS.DatHang);
+                phieuNhapTableAdapter.Connection.ConnectionString = Program.connectionString;
+                this.phieuNhapTableAdapter.Fill(this.dS.PhieuNhap);
+                phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
+                this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi làm mới dữ liệu/n " + ex.Message, "", MessageBoxButtons.OK);
             }
@@ -109,9 +135,15 @@ namespace QuanLyVatTu
                 MessageBox.Show("Lỗi kết nối về chi nhánh mới!", "", MessageBoxButtons.OK);
             else
             {
-                
+
                 KhoTA.Connection.ConnectionString = Program.connectionString;
                 this.KhoTA.Fill(this.dS.Kho);
+                datHangTableAdapter.Connection.ConnectionString = Program.connectionString;
+                this.datHangTableAdapter.Fill(this.dS.DatHang);
+                phieuNhapTableAdapter.Connection.ConnectionString = Program.connectionString;
+                this.phieuNhapTableAdapter.Fill(this.dS.PhieuNhap);
+                phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
+                this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
                 macn = ((DataRowView)BdsKho[0])["MACN"].ToString();
                 textBox1.Text = macn;
             }
@@ -138,5 +170,44 @@ namespace QuanLyVatTu
         {
 
         }
+
+        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            String makho = null;
+            if (datHangBindingSource.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa vì kho có trong đơn đặt hàng","",MessageBoxButtons.OK);
+                return;
+            }
+            if (phieuNhapBindingSource.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa vì kho có phiếu nhập", "", MessageBoxButtons.OK);
+                return;
+            }
+            if(phieuXuatBindingSource.Count>0)
+            {
+                MessageBox.Show("Không thể xóa vì đã có phiếu xuất");
+                return;
+            }  
+            if(MessageBox.Show("Bạn có muốn xóa kho?","", MessageBoxButtons.YesNo)==DialogResult.Yes)
+            {
+                try
+                {
+                    makho =((DataRowView)BdsKho[BdsKho.Position])["MAKHO"].ToString();
+                    BdsKho.RemoveCurrent();
+                    this.KhoTA.Connection.ConnectionString = Program.connectionString;
+                    this.KhoTA.Update(this.dS.Kho);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa kho. Hãy thử lại \n" + ex.Message, "",
+                        MessageBoxButtons.OK);
+                    this.KhoTA.Fill(this.dS.Kho);
+                    BdsKho.Position = BdsKho.Find("MAKHO", makho);
+                }
+            }
+            if (BdsKho.Count == 0) btnXoa.Enabled = false;
+        }
+
     }
 }

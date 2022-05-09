@@ -69,6 +69,8 @@ namespace QuanLyVatTu
         public static FormNhanVien formNhanVien;
         public static FormDn formDn;
         public static FormKho formKho;
+        public static FormDatHang formDatHang;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
