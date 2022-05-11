@@ -213,6 +213,16 @@ namespace QuanLyVatTu.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_single_choice_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-single-choice-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_warehouse_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-warehouse-48", resourceCulture);

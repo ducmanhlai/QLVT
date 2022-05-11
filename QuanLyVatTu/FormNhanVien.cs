@@ -14,6 +14,7 @@ namespace QuanLyVatTu
     {
         int vitri = 0;
         string macn = "";
+        bool dangThem = false;
 
         public FormNhanVien()
         {
@@ -22,14 +23,15 @@ namespace QuanLyVatTu
 
  //       private void cbbChiNhanh_SelectedIndexChanged
 
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            dangThem = true;
             vitri = bdsNV.Position;
             panelControl2.Enabled = true;
             bdsNV.AddNew();
             txtMACN.Text = macn;
             nGAYSINHDateEdit.EditValue = "";
-
+            
 
             btnHieuChinh.Enabled = btnIDSNV.Enabled = btnLamLai.Enabled = btnReset.Enabled = btnThoat.Enabled = btnthem.Enabled = btnXoa.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
@@ -129,11 +131,24 @@ namespace QuanLyVatTu
             panelControl2.Enabled = true;
             btnHieuChinh.Enabled = btnIDSNV.Enabled = btnLamLai.Enabled = btnReset.Enabled = btnThoat.Enabled = btnthem.Enabled = btnXoa.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
+            txtMANV.Enabled = false;
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Int32 manv = 0;
+            if (bdsNV.Count == 0)
+            {
+                btnXoa.Enabled = false;
+                return;
+            }
+            string manvkt = ((DataRowView)bdsNV[bdsNV.Position])["MANV"].ToString();
+            Console.WriteLine(manvkt);
+            if(manvkt == Program.userName)
+            {
+                MessageBox.Show("Bạn đang đăng nhập bằng tài khoản này, bạn không thể xóa nó!", "", MessageBoxButtons.OK);
+                return;
+            }    
             if(bdsDH.Count > 0)
             {
                 MessageBox.Show("Không thể xóa nhân viên này vì nhân viên đã lập đơn đặt hàng!", ""
@@ -155,6 +170,12 @@ namespace QuanLyVatTu
             if (MessageBox.Show("Bạn có muốn xóa nhân viên này?", "Xác Nhận",
                 MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
+                /*
+                 * B1: lấy mã nv để nếu có lỗi thì còn tìm được vị trí của nhân viên đó trên gc
+                 * B2: xóa nhân viên trên giao diện và bds
+                 * B3: mở chuỗi kết nối về Sql
+                 * B4: update lại dữ liệu trong sql
+                 */
                 try
                 {
                     manv = int.Parse(((DataRowView)bdsNV[bdsNV.Position])["MANV"].ToString());
@@ -171,7 +192,7 @@ namespace QuanLyVatTu
                     return;
                 }
             }
-            if (bdsNV.Count == 0) btnXoa.Enabled = false; 
+            
         }
 
         private void btnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -237,15 +258,40 @@ namespace QuanLyVatTu
             //if(lUONGTextEdit. > 0)
             // Viết sp kiểm tra mã trùng trên các phân mảnh
             // Luong thỏa miềm giá trị
-            if (status == 1)
+            if(dangThem == true)
             {
-                MessageBox.Show("Mã nhân viên này đã tồn tại!", "", MessageBoxButtons.OK);
-                return;
+                if (status == 1)
+                {
+                    MessageBox.Show("Mã nhân viên này đã tồn tại!", "", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    if (MessageBox.Show("Bạn có muốn lưu nhân viên này?", "Xác Nhận",
+                    MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        try
+                        {
+                            // kết thúc quá trình hiệu chỉnh
+                            bdsNV.EndEdit();
+                            bdsNV.ResetCurrentItem();
+                            this.nhanVienTableAdapter.Connection.ConnectionString = Program.connectionString;
+                            this.nhanVienTableAdapter.Update(this.dS.NhanVien);
+                            dangThem = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi ghi nhân viên!" + ex.Message, "", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                }
+                
             }
             else
             {
                 if (MessageBox.Show("Bạn có muốn lưu nhân viên này?", "Xác Nhận",
-                MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     try
                     {
@@ -265,7 +311,7 @@ namespace QuanLyVatTu
             gcNhanVien.Enabled = true;
             btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnThoat.Enabled = btnIDSNV.Enabled = btnReset.Enabled = true;
             btnPhucHoi.Enabled = btnLuu.Enabled = false;
-            //gcNhanVien.Enabled = false;
+            panelControl2.Enabled = false;
         }
 
         private void cbbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)

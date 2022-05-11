@@ -141,7 +141,7 @@ namespace QuanLyVatTu
             // txtDIACHI
             // 
             txtDIACHI.AutoSize = true;
-            txtDIACHI.Location = new System.Drawing.Point(78, 196);
+            txtDIACHI.Location = new System.Drawing.Point(739, 118);
             txtDIACHI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             txtDIACHI.Name = "txtDIACHI";
             txtDIACHI.Size = new System.Drawing.Size(43, 13);
@@ -172,7 +172,7 @@ namespace QuanLyVatTu
             // mACNLabel
             // 
             mACNLabel.AutoSize = true;
-            mACNLabel.Location = new System.Drawing.Point(1118, 46);
+            mACNLabel.Location = new System.Drawing.Point(1145, 52);
             mACNLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             mACNLabel.Name = "mACNLabel";
             mACNLabel.Size = new System.Drawing.Size(36, 13);
@@ -182,7 +182,7 @@ namespace QuanLyVatTu
             // trangThaiXoaLabel
             // 
             trangThaiXoaLabel.AutoSize = true;
-            trangThaiXoaLabel.Location = new System.Drawing.Point(1118, 196);
+            trangThaiXoaLabel.Location = new System.Drawing.Point(890, 52);
             trangThaiXoaLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             trangThaiXoaLabel.Name = "trangThaiXoaLabel";
             trangThaiXoaLabel.Size = new System.Drawing.Size(79, 13);
@@ -239,7 +239,7 @@ namespace QuanLyVatTu
             this.btnthem.Id = 0;
             this.btnthem.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_add_user_male_48;
             this.btnthem.Name = "btnthem";
-            this.btnthem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.btnthem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
             // btnHieuChinh
             // 
@@ -319,15 +319,17 @@ namespace QuanLyVatTu
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1410, 91);
             this.barDockControlTop.Size = new System.Drawing.Size(1370, 77);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 705);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 647);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1410, 20);
             this.barDockControlBottom.Size = new System.Drawing.Size(1370, 20);
             // 
             // barDockControlLeft
@@ -337,12 +339,17 @@ namespace QuanLyVatTu
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 77);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 556);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 628);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1410, 91);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 556);
             this.barDockControlRight.Location = new System.Drawing.Point(1370, 77);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
@@ -388,6 +395,7 @@ namespace QuanLyVatTu
             this.panelControl1.Location = new System.Drawing.Point(0, 77);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1410, 89);
             this.panelControl1.Size = new System.Drawing.Size(1370, 89);
             this.panelControl1.TabIndex = 4;
             // 
@@ -461,6 +469,7 @@ namespace QuanLyVatTu
             this.gcNhanVien.Margin = new System.Windows.Forms.Padding(4);
             this.gcNhanVien.MenuManager = this.barManager1;
             this.gcNhanVien.Name = "gcNhanVien";
+            this.gcNhanVien.Size = new System.Drawing.Size(1410, 275);
             this.gcNhanVien.Size = new System.Drawing.Size(1370, 275);
             this.gcNhanVien.TabIndex = 9;
             this.gcNhanVien.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -480,6 +489,7 @@ namespace QuanLyVatTu
             this.gridView1.DetailHeight = 437;
             this.gridView1.GridControl = this.gcNhanVien;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             // 
             // colMANV
             // 
@@ -572,18 +582,19 @@ namespace QuanLyVatTu
             this.panelControl2.Controls.Add(this.txtHO);
             this.panelControl2.Controls.Add(mANVLabel);
             this.panelControl2.Controls.Add(this.txtMANV);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Enabled = false;
             this.panelControl2.Location = new System.Drawing.Point(0, 441);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(1410, 192);
             this.panelControl2.Size = new System.Drawing.Size(1370, 250);
             this.panelControl2.TabIndex = 10;
             // 
             // cbTTX
             // 
             this.cbTTX.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.bdsNV, "TrangThaiXoa", true));
-            this.cbTTX.Location = new System.Drawing.Point(1244, 191);
+            this.cbTTX.Location = new System.Drawing.Point(1018, 47);
             this.cbTTX.Margin = new System.Windows.Forms.Padding(4);
             this.cbTTX.Name = "cbTTX";
             this.cbTTX.Size = new System.Drawing.Size(130, 29);
@@ -596,7 +607,7 @@ namespace QuanLyVatTu
             // 
             this.txtMACN.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsNV, "MACN", true));
             this.txtMACN.Enabled = false;
-            this.txtMACN.Location = new System.Drawing.Point(1218, 39);
+            this.txtMACN.Location = new System.Drawing.Point(1210, 49);
             this.txtMACN.Margin = new System.Windows.Forms.Padding(4);
             this.txtMACN.MenuManager = this.barManager1;
             this.txtMACN.Name = "txtMACN";
@@ -636,9 +647,10 @@ namespace QuanLyVatTu
             // txtDC
             // 
             this.txtDC.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "DIACHI", true));
-            this.txtDC.Location = new System.Drawing.Point(176, 193);
+            this.txtDC.Location = new System.Drawing.Point(859, 111);
             this.txtDC.Margin = new System.Windows.Forms.Padding(4);
             this.txtDC.Name = "txtDC";
+            this.txtDC.Size = new System.Drawing.Size(507, 23);
             this.txtDC.Size = new System.Drawing.Size(705, 21);
             this.txtDC.TabIndex = 7;
             // 
@@ -689,6 +701,8 @@ namespace QuanLyVatTu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1410, 667);
             this.ClientSize = new System.Drawing.Size(1370, 725);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.gcNhanVien);

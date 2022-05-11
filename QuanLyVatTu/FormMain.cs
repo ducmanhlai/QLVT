@@ -116,7 +116,7 @@ namespace QuanLyVatTu
             else
             { 
                 Form from = new FormNhanVien();
-//                from.MdiParent = this;
+                from.MdiParent = this;
                 from.Show(); 
             }
         }
@@ -145,6 +145,19 @@ namespace QuanLyVatTu
                 form.MdiParent = this;
                 form.Show();
             }
+        }
+
+        private void bntVatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = CheckExists(typeof(FormVatTu));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                Form form = new FormVatTu();
+                form.MdiParent = this;
+                form.Show();
+            }    
         }
     }
 }
