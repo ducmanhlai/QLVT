@@ -159,7 +159,7 @@ namespace QuanLyVatTu
             // 
             this.bar4.BarName = "Tools";
             this.bar4.DockCol = 0;
-            this.bar4.DockRow = 1;
+            this.bar4.DockRow = 0;
             this.bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnthem, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -333,6 +333,7 @@ namespace QuanLyVatTu
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BdsKho, "MACN", true));
             this.textBox1.Font = new System.Drawing.Font("Times New Roman", 10.8F);
             this.textBox1.Location = new System.Drawing.Point(812, 30);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);

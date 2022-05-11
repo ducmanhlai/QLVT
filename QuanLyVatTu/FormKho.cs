@@ -14,7 +14,7 @@ namespace QuanLyVatTu
     {
         int vitri = 0;
         string macn = "";
-
+        bool dangThem = false;
         public FormKho()
         {
             InitializeComponent();
@@ -54,7 +54,13 @@ namespace QuanLyVatTu
 
         private void btnthem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            dangThem = true;
+            vitri = BdsKho.Position;
+            panelControl2.Enabled = true;
+            BdsKho.AddNew();
+            btnHieuChinh.Enabled = btnIDSNV.Enabled = btnLamLai.Enabled = btnReset.Enabled = btnThoat.Enabled = btnthem.Enabled = btnXoa.Enabled = false;
+            btnLuu.Enabled = btnPhucHoi.Enabled = true;
+            GridKho.Enabled = false;
         }
 
         private void btnHieuChinh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -79,9 +85,69 @@ namespace QuanLyVatTu
                 MessageBox.Show("Tên kho không được bỏ trống", "", MessageBoxButtons.OK);
                 txtMaKho.Focus();
                 return;
+            }
+            string strlenh = "declare @status int "
+                          + "exec @status = SP_TraCuuMaKho '" +
+                          txtMaKho.Text +"'"
+                          + " select @status";
+            Program.myReader = Program.ExecSqlDataReader(strlenh);
+            Program.myReader.Read();
+            int status = int.Parse(Program.myReader.GetValue(0).ToString());
+            Program.myReader.Close();
+            if (dangThem == true)
+            {
+                if (status == 1)
+                {
+                    MessageBox.Show("Mã nhân viên này đã tồn tại!", "", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    if (MessageBox.Show("Bạn có muốn lưu nhân viên này?", "Xác Nhận",
+                    MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        try
+                        {
+                            // kết thúc quá trình hiệu chỉnh
+                            BdsKho.EndEdit();
+                            BdsKho.ResetCurrentItem();
+                            this.KhoTA.Connection.ConnectionString = Program.connectionString;
+                            this.KhoTA.Update(this.dS.Kho);
+                            dangThem = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi ghi nhân viên!" + ex.Message, "", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                }
 
-            }    
-               
+            }
+            else
+            {
+                if (MessageBox.Show("Bạn có muốn lưu nhân viên này?", "Xác Nhận",
+                    MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    try
+                    {
+                        // kết thúc quá trình hiệu chỉnh
+                        BdsKho.EndEdit();
+                        BdsKho.ResetCurrentItem();
+                        this.KhoTA.Connection.ConnectionString = Program.connectionString;
+                        this.KhoTA.Update(this.dS.Kho);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi ghi nhân viên!" + ex.Message, "", MessageBoxButtons.OK);
+                        return;
+                    }
+                }
+            }
+            GridKho.Enabled = true;
+            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnThoat.Enabled = btnIDSNV.Enabled = btnReset.Enabled = true;
+            btnPhucHoi.Enabled = btnLuu.Enabled = false;
+            panelControl2.Enabled = false;
 
         }
 
