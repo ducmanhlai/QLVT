@@ -30,6 +30,7 @@ namespace QuanLyVatTu
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.MANV = new System.Windows.Forms.ToolStripStatusLabel();
@@ -57,6 +58,10 @@ namespace QuanLyVatTu
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.pageBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            this.btnPN = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPX = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDDH = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
@@ -118,10 +123,14 @@ namespace QuanLyVatTu
             this.bntTHNX,
             this.bntDangXuat,
             this.bntTaoTK,
-            this.bntThoat});
+            this.bntThoat,
+            this.barSubItem1,
+            this.btnPN,
+            this.btnPX,
+            this.btnDDH});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonControl1.MaxItemId = 18;
+            this.ribbonControl1.MaxItemId = 22;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.pageTaiKhoan,
@@ -302,7 +311,7 @@ namespace QuanLyVatTu
             this.ribbonPageGroup1.ItemLinks.Add(this.bntNhanVien);
             this.ribbonPageGroup1.ItemLinks.Add(this.bntVatTu);
             this.ribbonPageGroup1.ItemLinks.Add(this.bntKho);
-            this.ribbonPageGroup1.ItemLinks.Add(this.bntLapPhieu);
+            this.ribbonPageGroup1.ItemLinks.Add(this.barSubItem1);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Quản lý nhân viên";
             // 
@@ -324,6 +333,42 @@ namespace QuanLyVatTu
             this.ribbonPageGroup2.ItemLinks.Add(this.bntTHNX);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Quản lý báo cáo";
+            // 
+            // barSubItem1
+            // 
+            this.barSubItem1.Caption = "Lập Phiếu";
+            this.barSubItem1.Id = 18;
+            this.barSubItem1.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_edit_text_file_48;
+            this.barSubItem1.LargeWidth = 100;
+            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnPN),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnPX),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnDDH)});
+            this.barSubItem1.Name = "barSubItem1";
+            this.barSubItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // btnPN
+            // 
+            this.btnPN.Caption = "Phiếu Nhập";
+            this.btnPN.Id = 19;
+            this.btnPN.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPN.ImageOptions.SvgImage")));
+            this.btnPN.Name = "btnPN";
+            this.btnPN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPN_ItemClick);
+            // 
+            // btnPX
+            // 
+            this.btnPX.Caption = "Phiếu Xuất";
+            this.btnPX.Id = 20;
+            this.btnPX.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPX.ImageOptions.SvgImage")));
+            this.btnPX.Name = "btnPX";
+            // 
+            // btnDDH
+            // 
+            this.btnDDH.Caption = "Đơn Đặt Hàng";
+            this.btnDDH.Id = 21;
+            this.btnDDH.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDDH.ImageOptions.SvgImage")));
+            this.btnDDH.Name = "btnDDH";
+            this.btnDDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDDH_ItemClick);
             // 
             // FormMain
             // 
@@ -379,5 +424,9 @@ namespace QuanLyVatTu
         public System.Windows.Forms.ToolStripStatusLabel MANV;
         public System.Windows.Forms.ToolStripStatusLabel HoTen;
         public System.Windows.Forms.ToolStripStatusLabel NHOM;
+        private DevExpress.XtraBars.BarSubItem barSubItem1;
+        private DevExpress.XtraBars.BarButtonItem btnPN;
+        private DevExpress.XtraBars.BarButtonItem btnPX;
+        private DevExpress.XtraBars.BarButtonItem btnDDH;
     }
 }

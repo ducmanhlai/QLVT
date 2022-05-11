@@ -373,11 +373,13 @@ namespace QuanLyVatTu
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ChiNhanhTableAdapter = null;
             this.tableAdapterManager.Connection = null;
             this.tableAdapterManager.CTDDHTableAdapter = null;
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = null;
+            this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = null;
             this.tableAdapterManager.PhieuXuatTableAdapter = null;
@@ -419,7 +421,8 @@ namespace QuanLyVatTu
             // 
             // colTENVT
             // 
-            this.colTENVT.FieldName = "TEN";
+            this.colTENVT.Caption = "Tên vật tư";
+            this.colTENVT.FieldName = "TENVT";
             this.colTENVT.MinWidth = 25;
             this.colTENVT.Name = "colTENVT";
             this.colTENVT.Visible = true;

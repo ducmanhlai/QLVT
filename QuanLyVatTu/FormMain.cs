@@ -136,15 +136,7 @@ namespace QuanLyVatTu
 
         private void bntLapPhieu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form f = CheckExists(typeof(FormDatHang));
-            if (f != null)
-                f.Activate();
-            else
-            {
-                Form form = new FormDatHang();
-                form.MdiParent = this;
-                form.Show();
-            }
+            
         }
 
         private void bntVatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -158,6 +150,32 @@ namespace QuanLyVatTu
                 form.MdiParent = this;
                 form.Show();
             }    
+        }
+
+        private void btnPN_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = CheckExists(typeof(FormPhieuNhap));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                Form form = new FormPhieuNhap();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
+
+        private void btnDDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = CheckExists(typeof(FormDatHang));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                Form form = new FormDatHang();
+                form.MdiParent = this;
+                form.Show();
+            }
         }
     }
 }

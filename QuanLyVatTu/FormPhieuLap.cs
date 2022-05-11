@@ -32,6 +32,8 @@ namespace QuanLyVatTu
 
         private void FormPhieuNhap_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dS.MaSoDHH' table. You can move, or remove it, as needed.
+            this.maSoDHHTableAdapter.Fill(this.dS.MaSoDHH);
             dS.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'dS.Vattu' table. You can move, or remove it, as needed.
             this.vattuTableAdapter.Connection.ConnectionString = Program.connectionString;
@@ -55,31 +57,6 @@ namespace QuanLyVatTu
             cbbChiNhanh.Enabled = false;
         }
 
-        private void cbbHoTenNV_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try 
-            {
-                txtMaNV.Text = cbbHoTenNV.SelectedValue.ToString();
-            }
-            catch(Exception ex)
-            {
-                //MessageBox.Show("Lỗi lấy mã nhân viên " + ex.Message, "", MessageBoxButtons.OK);
-                //return;
-            }
-        }
-
-        private void cbbTenKho_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                txtMaKho.Text = cbbTenKho.SelectedValue.ToString();
-            }
-            catch(Exception ex)
-            {
-                //MessageBox.Show("Lỗi lấy mã kho " + ex.Message, "", MessageBoxButtons.OK);
-                //return;
-            }
-        }
 
         private void mANVLabel_Click(object sender, EventArgs e)
         {
@@ -367,6 +344,37 @@ namespace QuanLyVatTu
                 this.cTPNTableAdapter.Connection.ConnectionString = Program.connectionString;
                 this.cTPNTableAdapter.Fill(this.dS.CTPN);
             }    
+        }
+
+        private void cbbMaDDH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbbHoTenNV_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMaNV.Text = cbbHoTenNV.SelectedValue.ToString();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Lỗi lấy mã nhân viên " + ex.Message, "", MessageBoxButtons.OK);
+                //return;
+            }
+        }
+
+        private void cbbTenKho_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMaKho.Text = cbbTenKho.SelectedValue.ToString();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Lỗi lấy mã nhân viên " + ex.Message, "", MessageBoxButtons.OK);
+                //return;
+            }
         }
     }
 }
