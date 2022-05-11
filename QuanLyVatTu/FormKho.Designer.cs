@@ -42,7 +42,6 @@ namespace QuanLyVatTu
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnReset = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
-            this.bar5 = new DevExpress.XtraBars.Bar();
             this.bar6 = new DevExpress.XtraBars.Bar();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
@@ -134,7 +133,6 @@ namespace QuanLyVatTu
             // 
             this.barManager2.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
             this.bar4,
-            this.bar5,
             this.bar6});
             this.barManager2.DockControls.Add(this.barDockControl1);
             this.barManager2.DockControls.Add(this.barDockControl2);
@@ -154,7 +152,6 @@ namespace QuanLyVatTu
             this.btnThoat,
             this.btnLamLai,
             this.btnReset});
-            this.barManager2.MainMenu = this.bar5;
             this.barManager2.MaxItemId = 13;
             this.barManager2.StatusBar = this.bar6;
             // 
@@ -230,16 +227,6 @@ namespace QuanLyVatTu
             this.btnThoat.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.inside_logout_icon;
             this.btnThoat.Name = "btnThoat";
             // 
-            // bar5
-            // 
-            this.bar5.BarName = "Main menu";
-            this.bar5.DockCol = 0;
-            this.bar5.DockRow = 0;
-            this.bar5.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar5.OptionsBar.MultiLine = true;
-            this.bar5.OptionsBar.UseWholeRow = true;
-            this.bar5.Text = "Main menu";
-            // 
             // bar6
             // 
             this.bar6.BarName = "Status bar";
@@ -259,7 +246,7 @@ namespace QuanLyVatTu
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager2;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControl1.Size = new System.Drawing.Size(1221, 77);
+            this.barDockControl1.Size = new System.Drawing.Size(1221, 56);
             // 
             // barDockControl2
             // 
@@ -274,19 +261,19 @@ namespace QuanLyVatTu
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 77);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 56);
             this.barDockControl3.Manager = this.barManager2;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 573);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 594);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1221, 77);
+            this.barDockControl4.Location = new System.Drawing.Point(1221, 56);
             this.barDockControl4.Manager = this.barManager2;
             this.barDockControl4.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 573);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 594);
             // 
             // barButtonItem1
             // 
@@ -337,7 +324,7 @@ namespace QuanLyVatTu
             this.panelControl1.Controls.Add(this.cbbChiNhanh);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(0, 77);
+            this.panelControl1.Location = new System.Drawing.Point(0, 56);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(5);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1221, 110);
@@ -393,7 +380,7 @@ namespace QuanLyVatTu
             this.GridKho.DataSource = this.BdsKho;
             this.GridKho.Dock = System.Windows.Forms.DockStyle.Top;
             this.GridKho.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.GridKho.Location = new System.Drawing.Point(0, 187);
+            this.GridKho.Location = new System.Drawing.Point(0, 166);
             this.GridKho.MainView = this.gridView1;
             this.GridKho.Margin = new System.Windows.Forms.Padding(4);
             this.GridKho.MenuManager = this.barManager2;
@@ -450,10 +437,10 @@ namespace QuanLyVatTu
             this.panelControl2.Controls.Add(this.txtMaKho);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Enabled = false;
-            this.panelControl2.Location = new System.Drawing.Point(0, 433);
+            this.panelControl2.Location = new System.Drawing.Point(0, 412);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1221, 217);
+            this.panelControl2.Size = new System.Drawing.Size(1221, 238);
             this.panelControl2.TabIndex = 20;
             // 
             // txtDiaChi
@@ -496,6 +483,7 @@ namespace QuanLyVatTu
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ChiNhanhTableAdapter = null;
             this.tableAdapterManager.CTDDHTableAdapter = null;
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = null;
@@ -580,7 +568,6 @@ namespace QuanLyVatTu
         private DevExpress.XtraBars.BarButtonItem btnPhucHoi;
         private DevExpress.XtraBars.BarButtonItem btnReset;
         private DevExpress.XtraBars.BarButtonItem btnThoat;
-        private DevExpress.XtraBars.Bar bar5;
         private DevExpress.XtraBars.Bar bar6;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarDockControl barDockControl2;
