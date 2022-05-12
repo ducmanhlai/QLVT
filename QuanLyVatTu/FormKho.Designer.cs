@@ -33,6 +33,7 @@ namespace QuanLyVatTu
             System.Windows.Forms.Label mAKHOLabel;
             System.Windows.Forms.Label tENKHOLabel;
             System.Windows.Forms.Label dIACHILabel;
+            System.Windows.Forms.Label mACNLabel;
             this.barManager2 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar4 = new DevExpress.XtraBars.Bar();
             this.btnthem = new DevExpress.XtraBars.BarButtonItem();
@@ -55,8 +56,6 @@ namespace QuanLyVatTu
             this.dS = new QuanLyVatTu.DS();
             this.BdsKho = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.cbbChiNhanh = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.GridKho = new DevExpress.XtraGrid.GridControl();
@@ -76,9 +75,11 @@ namespace QuanLyVatTu
             this.phieuNhapBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.phieuNhapTableAdapter = new QuanLyVatTu.DSTableAdapters.PhieuNhapTableAdapter();
             this.datHangTableAdapter = new QuanLyVatTu.DSTableAdapters.DatHangTableAdapter();
+            this.txtMaCN = new System.Windows.Forms.TextBox();
             mAKHOLabel = new System.Windows.Forms.Label();
             tENKHOLabel = new System.Windows.Forms.Label();
             dIACHILabel = new System.Windows.Forms.Label();
+            mACNLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BdsKho)).BeginInit();
@@ -226,6 +227,7 @@ namespace QuanLyVatTu
             this.btnThoat.Id = 10;
             this.btnThoat.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.inside_logout_icon;
             this.btnThoat.Name = "btnThoat";
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
             // bar6
             // 
@@ -319,41 +321,16 @@ namespace QuanLyVatTu
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.textBox1);
-            this.panelControl1.Controls.Add(this.label2);
+            this.panelControl1.Controls.Add(mACNLabel);
+            this.panelControl1.Controls.Add(this.txtMaCN);
             this.panelControl1.Controls.Add(this.cbbChiNhanh);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 56);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(5);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1221, 110);
+            this.panelControl1.Size = new System.Drawing.Size(1221, 129);
             this.panelControl1.TabIndex = 18;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BdsKho, "MACN", true));
-            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 10.8F);
-            this.textBox1.Location = new System.Drawing.Point(812, 30);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(252, 17);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 10.8F);
-            this.label2.Location = new System.Drawing.Point(761, 31);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Mã ";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // cbbChiNhanh
             // 
@@ -381,7 +358,7 @@ namespace QuanLyVatTu
             this.GridKho.DataSource = this.BdsKho;
             this.GridKho.Dock = System.Windows.Forms.DockStyle.Top;
             this.GridKho.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.GridKho.Location = new System.Drawing.Point(0, 166);
+            this.GridKho.Location = new System.Drawing.Point(0, 185);
             this.GridKho.MainView = this.gridView1;
             this.GridKho.Margin = new System.Windows.Forms.Padding(4);
             this.GridKho.MenuManager = this.barManager2;
@@ -438,10 +415,10 @@ namespace QuanLyVatTu
             this.panelControl2.Controls.Add(this.txtMaKho);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Enabled = false;
-            this.panelControl2.Location = new System.Drawing.Point(0, 412);
+            this.panelControl2.Location = new System.Drawing.Point(0, 431);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1221, 238);
+            this.panelControl2.Size = new System.Drawing.Size(1221, 219);
             this.panelControl2.TabIndex = 20;
             // 
             // txtDiaChi
@@ -517,6 +494,25 @@ namespace QuanLyVatTu
             // datHangTableAdapter
             // 
             this.datHangTableAdapter.ClearBeforeFill = true;
+            // 
+            // mACNLabel
+            // 
+            mACNLabel.AutoSize = true;
+            mACNLabel.Location = new System.Drawing.Point(752, 38);
+            mACNLabel.Name = "mACNLabel";
+            mACNLabel.Size = new System.Drawing.Size(70, 13);
+            mACNLabel.TabIndex = 4;
+            mACNLabel.Text = "Mã chi nhánh";
+            // 
+            // txtMaCN
+            // 
+            this.txtMaCN.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BdsKho, "MACN", true));
+            this.txtMaCN.Enabled = false;
+            this.txtMaCN.Location = new System.Drawing.Point(840, 30);
+            this.txtMaCN.Name = "txtMaCN";
+            this.txtMaCN.Size = new System.Drawing.Size(100, 21);
+            this.txtMaCN.TabIndex = 5;
+            this.txtMaCN.TextChanged += new System.EventHandler(this.mACNTextBox_TextChanged);
             // 
             // FormKho
             // 
@@ -595,13 +591,12 @@ namespace QuanLyVatTu
         private DevExpress.XtraEditors.TextEdit txtTenKho;
         private DevExpress.XtraEditors.TextEdit txtMaKho;
         private DSTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.BindingSource phieuXuatBindingSource;
         private DSTableAdapters.PhieuXuatTableAdapter phieuXuatTableAdapter;
         private System.Windows.Forms.BindingSource phieuNhapBindingSource;
         private DSTableAdapters.PhieuNhapTableAdapter phieuNhapTableAdapter;
         private System.Windows.Forms.BindingSource datHangBindingSource;
         private DSTableAdapters.DatHangTableAdapter datHangTableAdapter;
+        private System.Windows.Forms.TextBox txtMaCN;
     }
 }

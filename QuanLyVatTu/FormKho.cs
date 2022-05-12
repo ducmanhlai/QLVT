@@ -34,7 +34,7 @@ namespace QuanLyVatTu
             phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
             this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
             macn = ((DataRowView)BdsKho[0])["MACN"].ToString();
-            textBox1.Text = macn;
+            txtMaCN.Text = macn;
             cbbChiNhanh.DataSource = Program.bindingSource;
             cbbChiNhanh.DisplayMember = "TENCN";
             cbbChiNhanh.ValueMember = "TENSERVER";
@@ -58,6 +58,7 @@ namespace QuanLyVatTu
             vitri = BdsKho.Position;
             panelControl2.Enabled = true;
             BdsKho.AddNew();
+            txtMaCN.Text = macn;
             btnHieuChinh.Enabled = btnIDSNV.Enabled = btnLamLai.Enabled = btnReset.Enabled = btnThoat.Enabled = btnthem.Enabled = btnXoa.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
             GridKho.Enabled = false;
@@ -98,12 +99,12 @@ namespace QuanLyVatTu
             {
                 if (status == 1)
                 {
-                    MessageBox.Show("Mã nhân viên này đã tồn tại!", "", MessageBoxButtons.OK);
+                    MessageBox.Show("Mã kho này đã tồn tại!", "", MessageBoxButtons.OK);
                     return;
                 }
                 else
                 {
-                    if (MessageBox.Show("Bạn có muốn lưu nhân viên này?", "Xác Nhận",
+                    if (MessageBox.Show("Bạn có muốn lưu kho này?", "Xác Nhận",
                     MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         try
@@ -117,7 +118,7 @@ namespace QuanLyVatTu
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Lỗi ghi nhân viên!" + ex.Message, "", MessageBoxButtons.OK);
+                            MessageBox.Show("Lỗi ghi kho!" + ex.Message, "", MessageBoxButtons.OK);
                             return;
                         }
                     }
@@ -126,7 +127,7 @@ namespace QuanLyVatTu
             }
             else
             {
-                if (MessageBox.Show("Bạn có muốn lưu nhân viên này?", "Xác Nhận",
+                if (MessageBox.Show("Bạn có muốn lưu kho này?", "Xác Nhận",
                     MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     try
@@ -139,7 +140,7 @@ namespace QuanLyVatTu
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Lỗi ghi nhân viên!" + ex.Message, "", MessageBoxButtons.OK);
+                        MessageBox.Show("Lỗi ghi kho!" + ex.Message, "", MessageBoxButtons.OK);
                         return;
                     }
                 }
@@ -211,21 +212,10 @@ namespace QuanLyVatTu
                 phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
                 this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
                 macn = ((DataRowView)BdsKho[0])["MACN"].ToString();
-                textBox1.Text = macn;
+                txtMaCN.Text = macn;
             }
         }
-        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            this.Close();
-        }
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void mAKHOTextEdit_EditValueChanged(object sender, EventArgs e)
         {
@@ -275,5 +265,14 @@ namespace QuanLyVatTu
             if (BdsKho.Count == 0) btnXoa.Enabled = false;
         }
 
+        private void mACNTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
