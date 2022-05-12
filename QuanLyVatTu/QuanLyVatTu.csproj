@@ -101,11 +101,17 @@
     <Compile Include="FormNhanVien.designer.cs">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPhieuLap.cs">
+    <Compile Include="FormPhieuNhap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPhieuLap.designer.cs">
-      <DependentUpon>FormPhieuLap.cs</DependentUpon>
+    <Compile Include="FormPhieuNhap.designer.cs">
+      <DependentUpon>FormPhieuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPhieuXuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPhieuXuat.Designer.cs">
+      <DependentUpon>FormPhieuXuat.cs</DependentUpon>
     </Compile>
     <Compile Include="FormVatTu.cs">
       <SubType>Form</SubType>
@@ -130,8 +136,11 @@
     <EmbeddedResource Include="FormNhanVien.resx">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPhieuLap.resx">
-      <DependentUpon>FormPhieuLap.cs</DependentUpon>
+    <EmbeddedResource Include="FormPhieuNhap.resx">
+      <DependentUpon>FormPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPhieuXuat.resx">
+      <DependentUpon>FormPhieuXuat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVatTu.resx">
       <DependentUpon>FormVatTu.cs</DependentUpon>

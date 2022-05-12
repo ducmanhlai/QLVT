@@ -52,16 +52,16 @@ namespace QuanLyVatTu
             this.bntDangXuat = new DevExpress.XtraBars.BarButtonItem();
             this.bntTaoTK = new DevExpress.XtraBars.BarButtonItem();
             this.bntThoat = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            this.btnPN = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPX = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDDH = new DevExpress.XtraBars.BarButtonItem();
             this.pageTaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.pageNhanVien = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.pageBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
-            this.btnPN = new DevExpress.XtraBars.BarButtonItem();
-            this.btnPX = new DevExpress.XtraBars.BarButtonItem();
-            this.btnDDH = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
@@ -282,6 +282,43 @@ namespace QuanLyVatTu
             this.bntThoat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.bntThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bntThoat_ItemClick);
             // 
+            // barSubItem1
+            // 
+            this.barSubItem1.Caption = "Lập Phiếu";
+            this.barSubItem1.Id = 18;
+            this.barSubItem1.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_edit_text_file_48;
+            this.barSubItem1.LargeWidth = 100;
+            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnPN),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnPX),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnDDH)});
+            this.barSubItem1.Name = "barSubItem1";
+            this.barSubItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // btnPN
+            // 
+            this.btnPN.Caption = "Phiếu Nhập";
+            this.btnPN.Id = 19;
+            this.btnPN.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPN.ImageOptions.SvgImage")));
+            this.btnPN.Name = "btnPN";
+            this.btnPN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPN_ItemClick);
+            // 
+            // btnPX
+            // 
+            this.btnPX.Caption = "Phiếu Xuất";
+            this.btnPX.Id = 20;
+            this.btnPX.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPX.ImageOptions.SvgImage")));
+            this.btnPX.Name = "btnPX";
+            this.btnPX.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPX_ItemClick);
+            // 
+            // btnDDH
+            // 
+            this.btnDDH.Caption = "Đơn Đặt Hàng";
+            this.btnDDH.Id = 21;
+            this.btnDDH.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDDH.ImageOptions.SvgImage")));
+            this.btnDDH.Name = "btnDDH";
+            this.btnDDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDDH_ItemClick);
+            // 
             // pageTaiKhoan
             // 
             this.pageTaiKhoan.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -333,42 +370,6 @@ namespace QuanLyVatTu
             this.ribbonPageGroup2.ItemLinks.Add(this.bntTHNX);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Quản lý báo cáo";
-            // 
-            // barSubItem1
-            // 
-            this.barSubItem1.Caption = "Lập Phiếu";
-            this.barSubItem1.Id = 18;
-            this.barSubItem1.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.icons8_edit_text_file_48;
-            this.barSubItem1.LargeWidth = 100;
-            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnPN),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnPX),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnDDH)});
-            this.barSubItem1.Name = "barSubItem1";
-            this.barSubItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // btnPN
-            // 
-            this.btnPN.Caption = "Phiếu Nhập";
-            this.btnPN.Id = 19;
-            this.btnPN.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPN.ImageOptions.SvgImage")));
-            this.btnPN.Name = "btnPN";
-            this.btnPN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPN_ItemClick);
-            // 
-            // btnPX
-            // 
-            this.btnPX.Caption = "Phiếu Xuất";
-            this.btnPX.Id = 20;
-            this.btnPX.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPX.ImageOptions.SvgImage")));
-            this.btnPX.Name = "btnPX";
-            // 
-            // btnDDH
-            // 
-            this.btnDDH.Caption = "Đơn Đặt Hàng";
-            this.btnDDH.Id = 21;
-            this.btnDDH.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDDH.ImageOptions.SvgImage")));
-            this.btnDDH.Name = "btnDDH";
-            this.btnDDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDDH_ItemClick);
             // 
             // FormMain
             // 

@@ -31,8 +31,7 @@ namespace QuanLyVatTu
             bdsNV.AddNew();
             txtMACN.Text = macn;
             nGAYSINHDateEdit.EditValue = "";
-            
-
+            txtMANV.Enabled = true;
             btnHieuChinh.Enabled = btnIDSNV.Enabled = btnLamLai.Enabled = btnReset.Enabled = btnThoat.Enabled = btnthem.Enabled = btnXoa.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
             gcNhanVien.Enabled = false;

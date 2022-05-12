@@ -172,7 +172,7 @@ namespace QuanLyVatTu
             dangThem = true;
             bdsVT.AddNew();
             panelControl2.Enabled = true;
-
+            txtMaVT.Enabled = true;
             btnHieuChinh.Enabled = btnXoa.Enabled = btnthem.Enabled = btnThoat.Enabled = btnReset.Enabled = false;
             gcVatTu.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
