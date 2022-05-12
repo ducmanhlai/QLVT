@@ -177,5 +177,18 @@ namespace QuanLyVatTu
                 form.Show();
             }
         }
+
+        private void btnPX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = CheckExists(typeof(FormPhieuXuat));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                Form form = new FormPhieuXuat();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
     }
 }
