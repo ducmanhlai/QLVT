@@ -683,6 +683,7 @@ namespace QuanLyVatTu
             this.sbtnThem.Size = new System.Drawing.Size(96, 39);
             this.sbtnThem.TabIndex = 0;
             this.sbtnThem.Text = "Thêm";
+            this.sbtnThem.Click += new System.EventHandler(this.sbtnThem_Click);
             // 
             // bdsCTPX
             // 

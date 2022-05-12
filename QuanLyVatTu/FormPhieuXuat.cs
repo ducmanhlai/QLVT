@@ -203,5 +203,11 @@ namespace QuanLyVatTu
                 this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
             }
         }
+
+        private void sbtnThem_Click(object sender, EventArgs e)
+        {
+            bdsCTPX.AddNew();
+
+        }
     }
 }
