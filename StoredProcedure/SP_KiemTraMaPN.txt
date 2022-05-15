@@ -1,4 +1,4 @@
-ALTER proc [dbo].[SP_KIEMTRAMAPN]
+ALTER proc [dbo].[SP_KiemTraMaPN]
 @MaPN nchar(8)
 as
 	if exists(select 1 from PhieuNhap where @MaPN = MAPN)

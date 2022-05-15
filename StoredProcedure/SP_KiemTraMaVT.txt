@@ -1,4 +1,4 @@
-ALTER proc [dbo].[SP_KiemTraMaVatTu]
+ALTER proc [dbo].[SP_KiemTraMaVT]
 @MaVT nchar(4)
 as
 	if exists(select 1 from Vattu where MAVT = @MaVT)
