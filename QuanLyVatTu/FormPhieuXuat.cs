@@ -243,8 +243,8 @@ namespace QuanLyVatTu
             Console.WriteLine(txtMaKho);
             if(status == 1)
             {
-                MessageBox.Show("Không thể thêm chi tiết phiếu xuất vì mã phiếu xuất " + txtMaPX_CTPX.Text +
-                    "đã được lập tất cả các vật tư của kho " + txtMaKho.Text, "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể thêm chi tiết phiếu xuất vì ở kho có mã " + txtMaKho.Text  +
+                    "phiếu xuất " + txtMaPX_CTPX.Text.Trim() + "đã được lập chi tiết phiếu xuất với tất cả vật tư trong kho", "", MessageBoxButtons.OK);
                 return;
             }    
             if (teMaPX == null)
