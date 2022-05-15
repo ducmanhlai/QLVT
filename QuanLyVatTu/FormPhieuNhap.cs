@@ -14,8 +14,8 @@ namespace QuanLyVatTu
     public partial class FormPhieuNhap : Form
     {
         int vitri = 0;
-        int chedo = 0; // 0 là phiếu nhập, 1 là chi tiết phiếu nhập
-        bool dangThem = false;
+        bool dangThemPN = false;
+        bool dangThemCTPN = false;
 
 
         public FormPhieuNhap()
@@ -89,32 +89,40 @@ namespace QuanLyVatTu
 
         private void btnthem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //SqlConnection con = new SqlConnection();
-            //con.ConnectionString = Program.connectionString;
-            //if (con.State == ConnectionState.Closed)
-            //{
-            //    con.Open();
-            //}
-            //DataTable dt = new DataTable();
-            //// adapter dùng để đưa dữ liệu từ view sang database
-            //SqlDataAdapter da = new SqlDataAdapter("V_DanhSachDDH", con);
-            //// dùng adapter thì mới đổ vào data table được
-            //da.Fill(dt);
-            //con.Close();
-            //BindingSource bds = new BindingSource();
-            //bds.DataSource = dt;
-            cbbMaSoDDH.DataSource = bdsMaSoDDH;
-            cbbMaSoDDH.DisplayMember = "MaSoDDH";
-            cbbMaSoDDH.ValueMember = "MaSoDDH";
-            dangThem = true;
+            string strLenh = "Declare @status int "
+                            + "exec @status = SP_ChoPhepThemPN "
+                            + "select @status";
+            Program.myReader = Program.ExecSqlDataReader(strLenh);
+            Program.myReader.Read();
+            int status = int.Parse(Program.myReader.GetValue(0).ToString());
+            Program.myReader.Close();
+            if(status == 1)
+            {
+                MessageBox.Show("Không thể thêm phiếu nhập vì tất cả đơn đặt hàng đều đã được lập phiếu nhập", "", MessageBoxButtons.OK);
+                return;
+            }    
+            dangThemPN = true;
             vitri = bdsPN.Position;
             panelControl2.Enabled = true;
             // thêm mới
             bdsPN.AddNew();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select * from V_DanhSachDDH", Program.con);
+            da.Fill(dt);
+            BindingSource bds = new BindingSource();
+            bds.DataSource = dt;
+            cbbMaSoDDH.DataSource = bds;
+            cbbMaSoDDH.DisplayMember = "MasoDDH";
+            cbbMaSoDDH.ValueMember = "MasoDDH";
             btnthem.Enabled = btnReset.Enabled = btnThoat.Enabled = btnHieuChinh.Enabled = btnXoa.Enabled = bsChonCheDo.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
-            teMaPN.Enabled = true;
-            deNgay.EditValue = DateTime.Now; 
+            teMaPN.Enabled = cbbHoTenNV.Enabled = cbbMaSoDDH.Enabled = cbbTenKho.Enabled = deNgay.Enabled = true;
+            deNgay.EditValue = DateTime.Now;
+            ccbMaVT.Enabled = nnSoLuong.Enabled = seDonGiaCTPN.Enabled = false;
+            gcPN.Enabled = false;
+            gcCTPN.Enabled = false;
+            panelControl3.Enabled = false;
+            ccbMaVT.Enabled = nnSoLuong.Enabled = seDonGiaCTPN.Enabled = false;
         }
 
         private void txtMaKho_TextChanged(object sender, EventArgs e)
@@ -136,6 +144,7 @@ namespace QuanLyVatTu
             btnPhucHoi.Enabled = btnLuu.Enabled = false;
             gcPN.Enabled = true;
             panelControl2.Enabled = false;
+            panelControl3.Enabled = true;
         }
 
         private void btnReset_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -192,11 +201,23 @@ namespace QuanLyVatTu
 
         private void btnHieuChinh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            gcPN.Enabled = false; 
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select * from V_DanhSachDDH", Program.con);
+            da.Fill(dt);
+            dt.Rows.Add(cbbMaSoDDH.Text);
+            BindingSource bds = new BindingSource();
+            bds.DataSource = dt;
+            cbbMaSoDDH.DataSource = bds;
+            cbbMaSoDDH.DisplayMember = "MasoDDH";
+            cbbMaSoDDH.ValueMember = "MasoDDH";
+            gcPN.Enabled = false;
+            panelControl3.Enabled = false;
             panelControl2.Enabled = true; 
             teMaPN.Enabled = false; 
             btnHieuChinh.Enabled = btnReset.Enabled = btnThoat.Enabled = btnXoa.Enabled = btnthem.Enabled = false; 
-            btnLuu.Enabled = btnPhucHoi.Enabled = true;  
+            btnLuu.Enabled = btnPhucHoi.Enabled = true;
+            ccbMaVT.Enabled = nnSoLuong.Enabled = seDonGiaCTPN.Enabled = false;
+            cbbTenKho.Enabled = cbbHoTenNV.Enabled = cbbMaSoDDH.Enabled = deNgay.Enabled = true;
         }
         /*
          * B1: Kiểm tra định dạng
@@ -221,12 +242,12 @@ namespace QuanLyVatTu
                 
             /*    
              * Declare @status int   
-             * EXEC @status = SP_KIEMTRAMAPN 'tePN'    
+             * EXEC @status = SP_KiemTraMaPN 'tePN'    
              * select @status    
              */
                 
             string strLenh = "Declare @status int "
-                                 + "EXEC @status = SP_KIEMTRAMAPN "
+                                 + "EXEC @status = SP_KiemTraMaPN "
                                  + "'"
                                  + teMaPN.Text
                                  + "' "
@@ -235,28 +256,41 @@ namespace QuanLyVatTu
             Program.myReader.Read();  
             int status = int.Parse(Program.myReader.GetValue(0).ToString());  
             Program.myReader.Close();  
-            if(status == 1)  
-            {    
-                MessageBox.Show("Mã phiếu nhập đã tồn tại!", "", MessageBoxButtons.OK);  
-                return; 
-            }   
-            if(dangThem == true) 
-            {    
-                if (MessageBox.Show("Bạn thật sự muốn thêm phiếu nhập này?", "Xác nhận", MessageBoxButtons.OKCancel)
-                        == DialogResult.OK)  
-                {     
-                    try  
-                    {    
-                        bdsPN.EndEdit();    
-                        bdsPN.ResetCurrentItem();     
-                        this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connectionString;   
-                        this.phieuNhapTableAdapter.Update(this.dS.PhieuNhap);    
-                        dangThem = false;
-                    }
-                    catch (Exception ex)   
-                    {      
-                        MessageBox.Show("Lỗi lưu phiếu nhập " + ex.Message, "", MessageBoxButtons.OK);   
-                        return; 
+              
+            if(dangThemPN == true) 
+            {
+                if (status == 1)
+                {
+                    MessageBox.Show("Mã phiếu nhập đã tồn tại!", "", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    if (MessageBox.Show("Bạn thật sự muốn thêm phiếu nhập này?", "Xác nhận", MessageBoxButtons.OKCancel)
+                            == DialogResult.OK)
+                    {
+                        try
+                        {
+                            bdsPN.EndEdit();
+                            bdsPN.ResetCurrentItem();
+                            this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connectionString;
+                            this.phieuNhapTableAdapter.Update(this.dS.PhieuNhap);
+                            btnthem.Enabled = btnReset.Enabled = btnThoat.Enabled = btnHieuChinh.Enabled = btnXoa.Enabled = true;
+                            btnLuu.Enabled = btnPhucHoi.Enabled = false;
+                            //teMaPN.Enabled = true;
+                            //deNgay.EditValue = DateTime.Now;
+                            gcPN.Enabled = true;
+                            gcCTPN.Enabled = true;
+                            panelControl3.Enabled = true;
+                            panelControl2.Enabled = false;
+                            MessageBox.Show("Thêm thành công!", "", MessageBoxButtons.OK);
+                            dangThemPN = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi lưu phiếu nhập " + ex.Message, "", MessageBoxButtons.OK);
+                            return;
+                        }
                     }
                 }
             }
@@ -271,7 +305,16 @@ namespace QuanLyVatTu
                         bdsPN.ResetCurrentItem();
                         this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connectionString; 
                         this.phieuNhapTableAdapter.Update(this.dS.PhieuNhap);
-                            //dangThem = false;
+                        //dangThem = false;
+                        btnthem.Enabled = btnReset.Enabled = btnThoat.Enabled = btnHieuChinh.Enabled = btnXoa.Enabled = true;
+                        btnLuu.Enabled = btnPhucHoi.Enabled = false;
+                        //teMaPN.Enabled = true;
+                        //deNgay.EditValue = DateTime.Now;
+                        gcPN.Enabled = true;
+                        gcCTPN.Enabled = true;
+                        panelControl3.Enabled = true;
+                        panelControl2.Enabled = false;
+                        MessageBox.Show("Hiệu chỉnh thành công!", "", MessageBoxButtons.OK);
                     }   
                     catch (Exception ex) 
                     {    
@@ -279,7 +322,7 @@ namespace QuanLyVatTu
                         return;  
                     }
                 } 
-            }  
+            }
         }
         
 
@@ -338,15 +381,209 @@ namespace QuanLyVatTu
         {
             try
             {
-                if(cbbTenKho.SelectedValue != null)
+                if (cbbTenKho.SelectedValue != null)
                     txtMaKho.Text = cbbTenKho.SelectedValue.ToString();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                //MessageBox.Show("Lỗi lấy mã nhân viên " + ex.Message, "", MessageBoxButtons.OK);
-                //return;
+                MessageBox.Show("Lỗi lấy mã nhân viên " + ex.Message, "", MessageBoxButtons.OK);
+                return;
             }
         }
 
+        private void separatorControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sOLUONGNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sbtnThem_Click(object sender, EventArgs e)
+        {
+            string strLenh = "declare @status int "
+                            + "exec @status = SP_ChoPhepThemCTPN '"
+                            + teMaPN.Text
+                            + "', '"
+                            + cbbMaSoDDH.Text
+                            + "' "
+                            + "select @status";
+            Program.myReader = Program.ExecSqlDataReader(strLenh);
+            Program.myReader.Read();
+            int status = int.Parse(Program.myReader.GetValue(0).ToString());
+            Program.myReader.Close();
+            if(status == 1)
+            {
+                MessageBox.Show("Không thể thêm chi tiết phiếu nhập vì tất cả các vật trong trong mã đơn đặt hàng " + cbbMaSoDDH.Text + " đều đã được lập chi tiết phiếu nhập", "", MessageBoxButtons.OK);
+                return;
+            }    
+            bdsCTPN.AddNew();
+            txtMaPN_CTPN.Text = teMaPN.Text;
+            //ccbMaVT.Enabled = true;
+            gcCTPN.Enabled = gcPN.Enabled = false;
+            btnHieuChinh.Enabled = btnLuu.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = btnXoa.Enabled = btnReset.Enabled = btnthem.Enabled = false;
+            seDonGiaCTPN.Enabled = nnSoLuong.Enabled = ccbMaVT.Enabled = true;
+            sbtnThem.Enabled = sbtnHieuChinh.Enabled = sbtnXoa.Enabled = false;
+            //Console.WriteLine(cbbMaSoDDH.Text);
+            DataTable dt = new DataTable();
+            strLenh = "Select * from dbo.F_MAVTDDH('" + cbbMaSoDDH.Text.Trim() + "', '" + teMaPN.Text.Trim() + "')";
+            SqlDataAdapter da = new SqlDataAdapter(strLenh, Program.con);
+            da.Fill(dt);
+            BindingSource bds = new BindingSource();
+            bds.DataSource = dt;
+            ccbMaVT.DataSource = bds;
+            ccbMaVT.DisplayMember = "MAVT";
+            ccbMaVT.ValueMember = "MAVT";
+            ccbMaVT.Enabled = nnSoLuong.Enabled = seDonGiaCTPN.Enabled = true;
+            teMaPN.Enabled = deNgay.Enabled = cbbHoTenNV.Enabled = cbbMaSoDDH.Enabled = cbbTenKho.Enabled = false;
+            panelControl2.Enabled = true;
+            sbtnLuu.Enabled = sbtnPhucHoi.Enabled = true;
+            vitri = bdsCTPN.Position;
+            dangThemCTPN = true;
+            nnSoLuong.Value = 0;
+            seDonGiaCTPN.Value = 0;
+        }
+
+        private void sbtnXoa_Click(object sender, EventArgs e)
+        {
+            if(bdsCTPN.Count == 0)
+            {
+                MessageBox.Show("Không có chi tiết phiếu nhập nào để xóa!", "", MessageBoxButtons.OK);
+                return;
+            }    
+            if(MessageBox.Show("Bạn thật sự muốn xóa chi tiết phiếu nhập này?", "Xác Nhận", MessageBoxButtons.OKCancel)
+                == DialogResult.OK)
+            {
+                try
+                {
+                    vitri = bdsCTPN.Position;
+                    bdsCTPN.RemoveCurrent();
+                    this.cTPNTableAdapter.Connection.ConnectionString = Program.connectionString;
+                    this.cTPNTableAdapter.Update(this.dS.CTPN);
+                    MessageBox.Show("Xóa thành công!", "", MessageBoxButtons.OK);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa chi tiết vật tư " + ex.Message, "", MessageBoxButtons.OK);
+                    this.cTPNTableAdapter.Fill(this.dS.CTPN);
+                    bdsCTPN.Position = vitri;
+                }
+            }    
+        }
+
+        private void sbtnHieuChinh_Click(object sender, EventArgs e)
+        {
+            gcPN.Enabled = gcCTPN.Enabled = false;
+            panelControl2.Enabled = true;
+            btnHieuChinh.Enabled = btnLuu.Enabled = btnPhucHoi.Enabled = btnReset.Enabled = btnthem.Enabled = btnThoat.Enabled = btnXoa.Enabled = false;
+            sbtnHieuChinh.Enabled = sbtnThem.Enabled = sbtnXoa.Enabled = false;
+            teMaPN.Enabled = deNgay.Enabled = cbbMaSoDDH.Enabled = cbbTenKho.Enabled = cbbHoTenNV.Enabled = false;
+            ccbMaVT.Enabled = false;
+            nnSoLuong.Enabled = seDonGiaCTPN.Enabled = true;
+            sbtnPhucHoi.Enabled = sbtnLuu.Enabled = true;
+        }
+
+        /*
+         * Bước 1: Kiểm tra dangThemCTPN = true?false
+         * Bước 2: Nếu bằng true kiểm tra xem bạn thật sự muốn thêm CTPN này?(Đến bước 4)
+         * Bước 4: tiết hành lưu
+         *          + dangThemCPTN = false;
+         *          + bdsCTPN.EndEdit(); kết thúc quá trình edit();
+         *          + bdsCTPN.ResestCurrentItem(); reset lại grid view
+         *          + update dữ liệu
+         *          + bật tắt các nút lệnh;
+         * Bước 5: tiến hành lưu(hiệu chỉnh)
+         *          + vitri = bdsCTPN.Position(); // mục đính nếu sảy ra lỗi thì con trỏ sẽ trả về vị trí đang edit;
+         *          + bdsCTPN.EndEdit(); kết thúc quá trình edit();
+         *          + bdsCTPN.ResestCurrentItem(); reset lại grid view
+         *          + update dữ liệu
+         *          + bật tắt các nút lệnh;
+         */
+        private void sbtnLuu_Click(object sender, EventArgs e)
+        {
+            if(nnSoLuong.Value == 0)
+            {
+                MessageBox.Show("Không thể lưu vì số lượng phải lớn hơn không", "", MessageBoxButtons.OK);
+                return;
+            }
+            if(seDonGiaCTPN.Value == 0)
+            {
+                MessageBox.Show("Không thể lưu vì đơn giá phải lớn hơn không", "", MessageBoxButtons.OK);
+                return;
+            }    
+
+            if(dangThemCTPN == true)
+            {
+                if(MessageBox.Show("Bạn thật sự muốn thêm chi tiết phiếu nhập này?","Xác nhận",MessageBoxButtons.OKCancel)
+                    == DialogResult.OK)
+                {
+                    try 
+                    {
+                        
+                        //vitri = bdsCTPN.Position;
+                        bdsCTPN.EndEdit();
+                        bdsCTPN.ResetCurrentItem();
+                        this.cTPNTableAdapter.Connection.ConnectionString = Program.connectionString;
+                        this.cTPNTableAdapter.Update(this.dS.CTPN);
+                        MessageBox.Show("Thêm thành công!", "", MessageBoxButtons.OK);
+                        gcCTPN.Enabled = gcPN.Enabled = true;
+                        panelControl2.Enabled = false;
+                        btnHieuChinh.Enabled = btnPhucHoi.Enabled = btnthem.Enabled = btnThoat.Enabled
+                            = btnXoa.Enabled = btnReset.Enabled = true;
+                        sbtnHieuChinh.Enabled = sbtnXoa.Enabled = sbtnThem.Enabled = true;
+                        sbtnLuu.Enabled = sbtnPhucHoi.Enabled = false;
+                        dangThemCTPN = false;
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Lỗi thêm chi tiết phiếu nhập " + ex.Message, "", MessageBoxButtons.OK);
+                        bdsCTPN.Position = vitri;
+                        return;
+                    }
+                }    
+            }
+            else
+            {
+                vitri = bdsCTPN.Position;
+                if (MessageBox.Show("Bạn thật sự muốn lưu chi tiết phiếu nhập này?", "Xác nhận", MessageBoxButtons.OKCancel)
+                    == DialogResult.OK)
+                {
+                    try
+                    {
+                        bdsCTPN.EndEdit();
+                        bdsCTPN.ResetCurrentItem();
+                        this.cTPNTableAdapter.Connection.ConnectionString = Program.connectionString;
+                        this.cTPNTableAdapter.Update(this.dS.CTPN);
+                        MessageBox.Show("Hiệu chỉnh thành công!", "", MessageBoxButtons.OK);
+                        gcCTPN.Enabled = gcPN.Enabled = true;
+                        panelControl2.Enabled = false;
+                        btnHieuChinh.Enabled = btnPhucHoi.Enabled = btnthem.Enabled = btnThoat.Enabled
+                            = btnXoa.Enabled = btnReset.Enabled = true;
+                        sbtnHieuChinh.Enabled = sbtnXoa.Enabled = sbtnThem.Enabled = true;
+                        sbtnPhucHoi.Enabled = sbtnLuu.Enabled = false;
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Lỗi lưu chi tiết phiếu nhập " + ex.Message, "", MessageBoxButtons.OK);
+                        bdsVT.Position = vitri;
+                        return;
+                    }
+                    
+                }
+            }    
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            bdsCTPN.CancelEdit();
+            bdsCTPN.Position = vitri;
+            gcCTPN.Enabled = gcPN.Enabled = true;
+            btnHieuChinh.Enabled = btnthem.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnReset.Enabled = btnPhucHoi.Enabled = true;
+            sbtnHieuChinh.Enabled = sbtnThem.Enabled = sbtnXoa.Enabled = true;
+            sbtnLuu.Enabled = sbtnPhucHoi.Enabled = false;
+            panelControl2.Enabled = false;
+         }
     }
 }

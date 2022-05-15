@@ -233,7 +233,7 @@ namespace QuanLyVatTu
             }
 
             string strLenh = "Declare @status int "
-                            + "EXEC @status = SP_KiemTraMaVatTu '"
+                            + "EXEC @status = SP_KiemTraMaVT '"
                             + txtMaVT.Text + "' "
                             + "select @status";
             Program.myReader = Program.ExecSqlDataReader(strLenh);

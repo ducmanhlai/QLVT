@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,8 @@ namespace QuanLyVatTu
     public partial class FormPhieuXuat : Form
     {
         int viTri = 0;
-        bool dangThem = false;
+        bool dangThemPX = false;
+        bool dangThemCTPX = false;
         public FormPhieuXuat()
         {
             InitializeComponent();
@@ -29,6 +31,8 @@ namespace QuanLyVatTu
 
         private void FormPhieuXuat_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dS.Vattu' table. You can move, or remove it, as needed.
+            this.vattuTableAdapter.Fill(this.dS.Vattu);
             dS.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'dS.HoTenNV' table. You can move, or remove it, as needed.
             this.hoTenNVTableAdapter.Connection.ConnectionString = Program.connectionString;
@@ -47,24 +51,31 @@ namespace QuanLyVatTu
             cbbChiNhanh.ValueMember = "TENSERVER";
             cbbChiNhanh.SelectedIndex = Program.CN;
             cbbChiNhanh.Enabled = false;
-            if(Program.role == "CONGTY")
+            if (Program.role == "CONGTY")
             {
                 cbbChiNhanh.Enabled = true;
                 btnHieuChinh.Enabled = btnthem.Enabled = btnXoa.Enabled = btnLuu.Enabled = btnPhucHoi.Enabled = false;
                 panelControl3.Enabled = false;
-            }    
+            }
+        }
+
+        private void LoadVatTu()
+        {
+            lkMaVaTu.DataSource = bdsVatTu;
+            lkMaVaTu.DisplayMember = "TENVT";
+            lkMaVaTu.ValueMember = "MAVT";
         }
 
         private void hOTENComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try 
-            { 
-                if(cbbHoTenNV.SelectedValue != null)
+            try
+            {
+                if (cbbHoTenNV.SelectedValue != null)
                 {
                     txtMaNV.Text = cbbHoTenNV.SelectedValue.ToString();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Lỗi lấy mã nhân viên " + ex.Message, "", MessageBoxButtons.OK);
                 return;
@@ -98,9 +109,9 @@ namespace QuanLyVatTu
             {
                 this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối về server!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi kết nối về server " + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
         }
@@ -114,60 +125,72 @@ namespace QuanLyVatTu
             btnPhucHoi.Enabled = btnLuu.Enabled = false;
             gcPX.Enabled = true;
             panelControl2.Enabled = false;
+            panelControl3.Enabled = true;
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string mapx = "";
+
             if (bdsPX.Count == 0)
             {
                 MessageBox.Show("Không có phiếu xuất nào để xóa!", "", MessageBoxButtons.OK);
                 return;
             }
-            if(bdsCTPX.Count > 0)
+            if (bdsCTPX.Count > 0)
             {
                 MessageBox.Show("Không thể xóa Phiếu xuất đã lập chi tiết phiếu xuất!", "", MessageBoxButtons.OK);
                 return;
             }
-            if(MessageBox.Show("Bạn thật sự muốn xóa phiếu xuất này?","Xác Nhận", MessageBoxButtons.OKCancel)
+            if (MessageBox.Show("Bạn thật sự muốn xóa phiếu xuất này?", "Xác Nhận", MessageBoxButtons.OKCancel)
                 == DialogResult.OK)
             {
-                try 
+                try
                 {
-                    mapx = ((DataRowView)bdsPX[bdsPX.Position])["MAPX"].ToString();
+                    viTri = bdsPX.Position;
                     bdsPX.RemoveCurrent();
                     this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
                     this.phieuXuatTableAdapter.Update(this.dS.PhieuXuat);
+                    MessageBox.Show("Xóa phiếu xuất thành công!", "", MessageBoxButtons.OK);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi xóa phiếu xuất " + ex.Message, "", MessageBoxButtons.OK);
                     this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
-                    bdsPX.Position = bdsPX.Find("MAPX", mapx);
+                    bdsPX.Position = viTri;
                 }
-            }    
+            }
         }
 
         private void btnHieuChinh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            viTri = bdsPX.Position;
             panelControl2.Enabled = true;
             gcPX.Enabled = false;
             btnHieuChinh.Enabled = btnthem.Enabled = btnReset.Enabled = btnXoa.Enabled = btnThoat.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
             teMaPX.Enabled = false;
+            deNgay.Enabled = txtHoTenKH.Enabled = cbbHoTenNV.Enabled = cbbTenKho.Enabled = true;
+            cbbMaVT.Enabled = nmSoLuong.Enabled = seDonGia.Enabled = false;
+            panelControl3.Enabled = false;
         }
-
+        /*
+         * Bước 1: lấy vị trí của con trỏ trên grid view
+         * Bước 2: tạo 1 dòng bdsPX;
+         * Bước 3: bật tắt các nút lệnh
+         */
         private void btnthem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            viTri = bdsPX.Position;
+            panelControl2.Enabled = true;
             bdsPX.AddNew();
-            dangThem = true;
+            dangThemPX = true;
             gcPX.Enabled = false;
-            teMaPX.Enabled = true;
             btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnReset.Enabled = btnThoat.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
-            panelControl2.Enabled = true;
             panelControl3.Enabled = false;
             gcCTPX.Enabled = false;
+            teMaPX.Enabled = deNgay.Enabled = txtHoTenKH.Enabled = cbbHoTenNV.Enabled = cbbTenKho.Enabled = true;
+            cbbMaVT.Enabled = nmSoLuong.Enabled = seDonGia.Enabled = false;
         }
 
         private void cbbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
@@ -175,7 +198,7 @@ namespace QuanLyVatTu
             if (cbbChiNhanh.SelectedValue.ToString() == "System.Data.DataRowView")
                 return;
             Program.serverName = cbbChiNhanh.SelectedValue.ToString();
-            if(cbbChiNhanh.SelectedIndex != Program.CN)
+            if (cbbChiNhanh.SelectedIndex != Program.CN)
             {
                 Program.loginName = Program.remoteLogin;
                 Program.password = Program.remotePassword;
@@ -206,8 +229,232 @@ namespace QuanLyVatTu
 
         private void sbtnThem_Click(object sender, EventArgs e)
         {
+            string strLenh = "declare @status int "
+                              + "exec @status = SP_ChoPhepThemCTPX '"
+                              + txtMaKho.Text + "', '"
+                              + teMaPX.Text + "' "
+                              + "select @status";
+            Program.myReader = Program.ExecSqlDataReader(strLenh);
+            Program.myReader.Read();
+            int status = int.Parse(Program.myReader.GetValue(0).ToString());
+            Program.myReader.Close();
+            Console.WriteLine(status);
+            Console.WriteLine(teMaPX.Text);
+            Console.WriteLine(txtMaKho);
+            if(status == 1)
+            {
+                MessageBox.Show("Không thể thêm chi tiết phiếu xuất vì mã phiếu xuất " + txtMaPX_CTPX.Text +
+                    "đã được lập tất cả các vật tư của kho " + txtMaKho.Text, "", MessageBoxButtons.OK);
+                return;
+            }    
+            if (teMaPX == null)
+                return;
             bdsCTPX.AddNew();
+            txtMaPX_CTPX.Text = teMaPX.Text;
+            DataTable dt = new DataTable();
+            strLenh = "Select * from dbo.F_MAVTKHO('" + txtMaKho.Text + "', '" + teMaPX.Text + "')";
+            SqlDataAdapter da = new SqlDataAdapter(strLenh, Program.con);
+            da.Fill(dt);
+            BindingSource bds = new BindingSource();
+            bds.DataSource = dt;
+            cbbMaVT.DataSource = bds;
+            cbbMaVT.DisplayMember = "MAVT";
+            cbbMaVT.ValueMember = "MAVT";
+            gcPX.Enabled = false;
+            btnHieuChinh.Enabled = btnXoa.Enabled = btnthem.Enabled =
+                btnReset.Enabled = btnLuu.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = false;
+            panelControl2.Enabled = true;
+            sbtnHieuChinh.Enabled = sbtnXoa.Enabled = sbtnThem.Enabled = false;
+            sbtnLuu.Enabled = sbtnHoanTac.Enabled = true;
+            gcCTPX.Enabled = gcPX.Enabled = false;
+            teMaPX.Enabled = deNgay.Enabled = txtHoTenKH.Enabled = cbbHoTenNV.Enabled = cbbTenKho.Enabled = false;
+            cbbMaVT.Enabled = nmSoLuong.Enabled = seDonGia.Enabled = true;
+            nmSoLuong.Value = 0;
+            seDonGia.Value = 0;
+        }
 
+        
+
+        private void sbtnXoa_Click(object sender, EventArgs e)
+        {
+            int vt = bdsCTPX.Position;
+            if (bdsCTPX.Count == 0)
+            {
+                MessageBox.Show("Không có chi tiết phiếu xuất nào để xóa!", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (MessageBox.Show("Bạn thật sự muốn xóa chi tiết phiếu xuất này?", "Xác Nhận", MessageBoxButtons.OKCancel)
+                == DialogResult.OK)
+            {
+                try
+                {
+                    bdsCTPX.RemoveCurrent();
+                    this.cTPXTableAdapter.Connection.ConnectionString = Program.connectionString;
+                    this.cTPXTableAdapter.Update(this.dS.CTPX);
+                    MessageBox.Show("Xóa chi tiết phiếu xuất thành công!", "", MessageBoxButtons.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa chi tiết phiếu xuất " + ex.Message, "", MessageBoxButtons.OK);
+                    this.cTPXTableAdapter.Fill(this.dS.CTPX);
+                    bdsCTPX.Position = vt;
+                }
+            }
+        }
+
+        private void sbtnHieuChinh_Click(object sender, EventArgs e)
+        {
+            btnHieuChinh.Enabled = btnthem.Enabled = btnThoat.Enabled = btnXoa.Enabled = btnLuu.Enabled = btnReset.Enabled = btnPhucHoi.Enabled = false;
+            panelControl2.Enabled = true;
+            gcCTPX.Enabled = gcPX.Enabled = false;
+            sbtnHieuChinh.Enabled = sbtnThem.Enabled = sbtnXoa.Enabled = false;
+            sbtnHoanTac.Enabled = sbtnLuu.Enabled = true;
+            teMaPX.Enabled = deNgay.Enabled = txtHoTenKH.Enabled = cbbHoTenNV.Enabled = cbbTenKho.Enabled = false;
+            cbbMaVT.Enabled = false;
+            nmSoLuong.Enabled = seDonGia.Enabled = true;
+        }
+
+        private void btnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (txtHoTenKH.Text == "")
+            {
+                MessageBox.Show("Không thể để trống họ tên khách hàng!", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (teMaPX.Text == "")
+            {
+                MessageBox.Show("Không thể để trống mã phiếu nhập!", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (txtMaKho.Text == "")
+            {
+                MessageBox.Show("Không thể bỏ trống mã kho!", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (txtMaNV.Text == "")
+            {
+                MessageBox.Show("Không thể bỏ trống mã nhân viên!", "", MessageBoxButtons.OK);
+                return;
+            }
+            string strLenh = "declare @status int "
+                            + "exec @status = SP_KiemTraMaPX '"
+                            + teMaPX.Text + "' "
+                            + "select @status";
+            Program.myReader = Program.ExecSqlDataReader(strLenh);
+            Program.myReader.Read();
+            int status = int.Parse(Program.myReader.GetValue(0).ToString());
+            Program.myReader.Close();
+
+            if (dangThemPX == true)
+            {
+                if (status == 1)
+                {
+                    MessageBox.Show("Không thể lưu vì mã phiếu nhập đã được sử dụng!", "", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    if (MessageBox.Show("Bạn thật sự muốn thêm phiếu xuất này?", "Xác nhận", MessageBoxButtons.OKCancel)
+                        == DialogResult.OK)
+                    {
+                        try
+                        {
+                            bdsPX.EndEdit();
+                            bdsPX.ResetCurrentItem();
+                            this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
+                            this.phieuXuatTableAdapter.Update(this.dS.PhieuXuat);
+                            MessageBox.Show("Thêm phiếu xuất thành công!", "", MessageBoxButtons.OK);
+                            gcPX.Enabled = true;
+                            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnReset.Enabled = btnThoat.Enabled = true;
+                            btnLuu.Enabled = btnPhucHoi.Enabled = false;
+                            panelControl3.Enabled = true;
+                            gcCTPX.Enabled = true;
+                            panelControl2.Enabled = false;
+                            dangThemPX = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            bdsPX.Position = viTri;
+                            MessageBox.Show("Lỗi thêm phiếu xuất " + ex.Message, "", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("Bạn thật sự muốn hiệu chỉnh phiếu xuất này?", "Xác nhận", MessageBoxButtons.OKCancel)
+                        == DialogResult.OK)
+                {
+                    try
+                    {
+                        bdsPX.EndEdit();
+                        bdsPX.ResetCurrentItem();
+                        this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
+                        this.phieuXuatTableAdapter.Update(this.dS.PhieuXuat);
+                        MessageBox.Show("Hiệu chỉnh phiếu xuất thành công!", "", MessageBoxButtons.OK);
+                        gcPX.Enabled = true;
+                        btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnReset.Enabled = btnThoat.Enabled = true;
+                        btnLuu.Enabled = btnPhucHoi.Enabled = false;
+                        panelControl3.Enabled = true;
+                        gcCTPX.Enabled = true;
+                        panelControl2.Enabled = false;
+                        //dangThemPX = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi lưu phiếu xuất " + ex.Message, "", MessageBoxButtons.OK);
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void sbtnLuu_Click(object sender, EventArgs e)
+        {
+            if (nmSoLuong.Value == 0)
+            {
+                MessageBox.Show("Không thể lưu vì số lượng phải lớn hơn không", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (seDonGia.Value == 0)
+            {
+                MessageBox.Show("Không thể lưu vì đơn giá phải lớn hơn không", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (MessageBox.Show("Bạn thật sự muốn thêm chi tiết phiếu nhập này?", "Xác nhận", MessageBoxButtons.OKCancel)
+                    == DialogResult.OK)
+            {
+                try
+                {
+                    bdsCTPX.EndEdit();
+                    bdsCTPX.ResetCurrentItem();
+                    this.cTPXTableAdapter.Connection.ConnectionString = Program.connectionString;
+                    this.cTPXTableAdapter.Update(this.dS.CTPX);
+                    MessageBox.Show("Lưu chi tiết phiếu xuất thành công");
+                    gcCTPX.Enabled = gcPX.Enabled = true;
+                    panelControl2.Enabled = false;
+                    btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnReset.Enabled = btnThoat.Enabled = true;
+                    btnLuu.Enabled = btnPhucHoi.Enabled = false;
+                    sbtnHieuChinh.Enabled = sbtnThem.Enabled = sbtnXoa.Enabled = true;
+                    sbtnLuu.Enabled = sbtnHoanTac.Enabled = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi lưu chi tiết phiễu xuất " + ex.Message, "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+        }
+
+        private void sbtnHoanTac_Click(object sender, EventArgs e)
+        {
+            bdsCTPX.CancelEdit();
+            gcPX.Enabled = gcCTPX.Enabled = true;
+            btnHieuChinh.Enabled = btnXoa.Enabled = btnthem.Enabled =
+                btnReset.Enabled =  btnPhucHoi.Enabled = btnThoat.Enabled = true;
+            panelControl2.Enabled = false;
+            sbtnHieuChinh.Enabled = sbtnXoa.Enabled = sbtnThem.Enabled = true;
         }
     }
 }

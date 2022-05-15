@@ -247,7 +247,7 @@ namespace QuanLyVatTu
             * select @status
             */
             string strlenh = "declare @status int "
-                            + "exec @status = SP_TraCuuNhanVien " +
+                            + "exec @status = SP_KiemTraMaNV " +
                             txtMANV.Text
                             + " select @status";
             Program.myReader = Program.ExecSqlDataReader(strlenh);
