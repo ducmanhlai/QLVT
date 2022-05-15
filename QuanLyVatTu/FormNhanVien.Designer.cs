@@ -123,7 +123,7 @@ namespace QuanLyVatTu
             mANVLabel.Location = new System.Drawing.Point(78, 46);
             mANVLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             mANVLabel.Name = "mANVLabel";
-            mANVLabel.Size = new System.Drawing.Size(35, 13);
+            mANVLabel.Size = new System.Drawing.Size(43, 17);
             mANVLabel.TabIndex = 0;
             mANVLabel.Text = "MANV";
             // 
@@ -133,7 +133,7 @@ namespace QuanLyVatTu
             ho.Location = new System.Drawing.Point(406, 46);
             ho.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             ho.Name = "ho";
-            ho.Size = new System.Drawing.Size(22, 13);
+            ho.Size = new System.Drawing.Size(27, 17);
             ho.TabIndex = 2;
             ho.Text = "HO";
             // 
@@ -143,7 +143,7 @@ namespace QuanLyVatTu
             txtDIACHI.Location = new System.Drawing.Point(739, 118);
             txtDIACHI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             txtDIACHI.Name = "txtDIACHI";
-            txtDIACHI.Size = new System.Drawing.Size(43, 13);
+            txtDIACHI.Size = new System.Drawing.Size(52, 17);
             txtDIACHI.TabIndex = 6;
             txtDIACHI.Text = "DIACHI";
             // 
@@ -153,7 +153,7 @@ namespace QuanLyVatTu
             dtpNGAYSINH.Location = new System.Drawing.Point(78, 115);
             dtpNGAYSINH.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             dtpNGAYSINH.Name = "dtpNGAYSINH";
-            dtpNGAYSINH.Size = new System.Drawing.Size(58, 13);
+            dtpNGAYSINH.Size = new System.Drawing.Size(72, 17);
             dtpNGAYSINH.TabIndex = 8;
             dtpNGAYSINH.Text = "NGAYSINH";
             // 
@@ -163,7 +163,7 @@ namespace QuanLyVatTu
             txtLUONG.Location = new System.Drawing.Point(406, 116);
             txtLUONG.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             txtLUONG.Name = "txtLUONG";
-            txtLUONG.Size = new System.Drawing.Size(41, 13);
+            txtLUONG.Size = new System.Drawing.Size(52, 17);
             txtLUONG.TabIndex = 10;
             txtLUONG.Text = "LUONG";
             txtLUONG.Click += new System.EventHandler(this.lUONGLabel_Click);
@@ -174,7 +174,7 @@ namespace QuanLyVatTu
             mACNLabel.Location = new System.Drawing.Point(1145, 52);
             mACNLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             mACNLabel.Name = "mACNLabel";
-            mACNLabel.Size = new System.Drawing.Size(36, 13);
+            mACNLabel.Size = new System.Drawing.Size(44, 17);
             mACNLabel.TabIndex = 11;
             mACNLabel.Text = "MACN";
             // 
@@ -184,7 +184,7 @@ namespace QuanLyVatTu
             trangThaiXoaLabel.Location = new System.Drawing.Point(890, 52);
             trangThaiXoaLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             trangThaiXoaLabel.Name = "trangThaiXoaLabel";
-            trangThaiXoaLabel.Size = new System.Drawing.Size(79, 13);
+            trangThaiXoaLabel.Size = new System.Drawing.Size(100, 17);
             trangThaiXoaLabel.TabIndex = 13;
             trangThaiXoaLabel.Text = "Trang Thai Xoa";
             // 
@@ -218,7 +218,7 @@ namespace QuanLyVatTu
             // 
             this.bar1.BarName = "Tools";
             this.bar1.DockCol = 0;
-            this.bar1.DockRow = 1;
+            this.bar1.DockRow = 0;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnthem, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -226,7 +226,7 @@ namespace QuanLyVatTu
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnLuu, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReset, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReset, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar1.Text = "Tools";
             // 
@@ -306,7 +306,7 @@ namespace QuanLyVatTu
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1370, 56);
+            this.barDockControlTop.Size = new System.Drawing.Size(1370, 70);
             // 
             // barDockControlBottom
             // 
@@ -321,19 +321,19 @@ namespace QuanLyVatTu
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 56);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 70);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 649);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 635);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1370, 56);
+            this.barDockControlRight.Location = new System.Drawing.Point(1370, 70);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 649);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 635);
             // 
             // barButtonItem1
             // 
@@ -372,7 +372,7 @@ namespace QuanLyVatTu
             this.panelControl1.Controls.Add(this.cbbChiNhanh);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(0, 56);
+            this.panelControl1.Location = new System.Drawing.Point(0, 70);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1370, 89);
@@ -384,7 +384,7 @@ namespace QuanLyVatTu
             this.cbbChiNhanh.Location = new System.Drawing.Point(150, 32);
             this.cbbChiNhanh.Margin = new System.Windows.Forms.Padding(4);
             this.cbbChiNhanh.Name = "cbbChiNhanh";
-            this.cbbChiNhanh.Size = new System.Drawing.Size(524, 21);
+            this.cbbChiNhanh.Size = new System.Drawing.Size(524, 24);
             this.cbbChiNhanh.TabIndex = 1;
             this.cbbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cbbChiNhanh_SelectedIndexChanged);
             // 
@@ -394,7 +394,7 @@ namespace QuanLyVatTu
             this.label1.Location = new System.Drawing.Point(39, 32);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(71, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Chi Nhánh";
             // 
@@ -444,7 +444,7 @@ namespace QuanLyVatTu
             this.gcNhanVien.DataSource = this.bdsNV;
             this.gcNhanVien.Dock = System.Windows.Forms.DockStyle.Top;
             this.gcNhanVien.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcNhanVien.Location = new System.Drawing.Point(0, 145);
+            this.gcNhanVien.Location = new System.Drawing.Point(0, 159);
             this.gcNhanVien.MainView = this.gridView1;
             this.gcNhanVien.Margin = new System.Windows.Forms.Padding(4);
             this.gcNhanVien.MenuManager = this.barManager1;
@@ -563,10 +563,10 @@ namespace QuanLyVatTu
             this.panelControl2.Controls.Add(this.txtMANV);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Enabled = false;
-            this.panelControl2.Location = new System.Drawing.Point(0, 420);
+            this.panelControl2.Location = new System.Drawing.Point(0, 434);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1370, 285);
+            this.panelControl2.Size = new System.Drawing.Size(1370, 271);
             this.panelControl2.TabIndex = 10;
             // 
             // cbTTX
@@ -589,7 +589,7 @@ namespace QuanLyVatTu
             this.txtMACN.Margin = new System.Windows.Forms.Padding(4);
             this.txtMACN.MenuManager = this.barManager1;
             this.txtMACN.Name = "txtMACN";
-            this.txtMACN.Size = new System.Drawing.Size(156, 20);
+            this.txtMACN.Size = new System.Drawing.Size(156, 22);
             this.txtMACN.TabIndex = 12;
             // 
             // lUONGTextEdit
@@ -603,7 +603,7 @@ namespace QuanLyVatTu
             this.lUONGTextEdit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.lUONGTextEdit.Properties.EditFormat.FormatString = "n0";
             this.lUONGTextEdit.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.lUONGTextEdit.Size = new System.Drawing.Size(156, 20);
+            this.lUONGTextEdit.Size = new System.Drawing.Size(156, 22);
             this.lUONGTextEdit.TabIndex = 11;
             this.lUONGTextEdit.EditValueChanged += new System.EventHandler(this.lUONGTextEdit_EditValueChanged);
             // 
@@ -619,7 +619,7 @@ namespace QuanLyVatTu
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.nGAYSINHDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.nGAYSINHDateEdit.Size = new System.Drawing.Size(156, 20);
+            this.nGAYSINHDateEdit.Size = new System.Drawing.Size(156, 22);
             this.nGAYSINHDateEdit.TabIndex = 9;
             // 
             // txtDC
@@ -628,7 +628,7 @@ namespace QuanLyVatTu
             this.txtDC.Location = new System.Drawing.Point(859, 111);
             this.txtDC.Margin = new System.Windows.Forms.Padding(4);
             this.txtDC.Name = "txtDC";
-            this.txtDC.Size = new System.Drawing.Size(705, 21);
+            this.txtDC.Size = new System.Drawing.Size(705, 23);
             this.txtDC.TabIndex = 7;
             // 
             // txtTEN
@@ -637,7 +637,7 @@ namespace QuanLyVatTu
             this.txtTEN.Location = new System.Drawing.Point(696, 46);
             this.txtTEN.Margin = new System.Windows.Forms.Padding(4);
             this.txtTEN.Name = "txtTEN";
-            this.txtTEN.Size = new System.Drawing.Size(124, 21);
+            this.txtTEN.Size = new System.Drawing.Size(124, 23);
             this.txtTEN.TabIndex = 5;
             // 
             // txtHO
@@ -646,7 +646,7 @@ namespace QuanLyVatTu
             this.txtHO.Location = new System.Drawing.Point(511, 46);
             this.txtHO.Margin = new System.Windows.Forms.Padding(4);
             this.txtHO.Name = "txtHO";
-            this.txtHO.Size = new System.Drawing.Size(163, 21);
+            this.txtHO.Size = new System.Drawing.Size(163, 23);
             this.txtHO.TabIndex = 3;
             // 
             // txtMANV
@@ -655,7 +655,7 @@ namespace QuanLyVatTu
             this.txtMANV.Location = new System.Drawing.Point(196, 39);
             this.txtMANV.Margin = new System.Windows.Forms.Padding(4);
             this.txtMANV.Name = "txtMANV";
-            this.txtMANV.Size = new System.Drawing.Size(124, 21);
+            this.txtMANV.Size = new System.Drawing.Size(124, 23);
             this.txtMANV.TabIndex = 1;
             this.txtMANV.TextChanged += new System.EventHandler(this.txtMANV_TextChanged);
             // 
@@ -676,7 +676,7 @@ namespace QuanLyVatTu
             // 
             // FormNhanVien
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1370, 725);

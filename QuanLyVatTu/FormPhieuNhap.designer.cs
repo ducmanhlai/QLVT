@@ -101,7 +101,6 @@ namespace QuanLyVatTu
             this.bdsVT = new System.Windows.Forms.BindingSource(this.components);
             this.vattuTableAdapter = new QuanLyVatTu.DSTableAdapters.VattuTableAdapter();
             this.bdsMaSoDDH = new System.Windows.Forms.BindingSource(this.components);
-            this.maSoDDHTableAdapter = new QuanLyVatTu.DSTableAdapters.MaSoDDHTableAdapter();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.sbtnLuu = new DevExpress.XtraEditors.SimpleButton();
             this.sbtnHieuChinh = new DevExpress.XtraEditors.SimpleButton();
@@ -806,7 +805,6 @@ namespace QuanLyVatTu
             // 
             // maSoDDHTableAdapter
             // 
-            this.maSoDDHTableAdapter.ClearBeforeFill = true;
             // 
             // panelControl3
             // 
@@ -987,7 +985,7 @@ namespace QuanLyVatTu
             ((System.ComponentModel.ISupportInitialize)(this.deNgay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teMaPN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsVT)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsMaSoDDH)).EndInit();
+ //           ((System.ComponentModel.ISupportInitialize)(this.bdsMaSoDDH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcCTPN)).EndInit();
@@ -1053,7 +1051,6 @@ namespace QuanLyVatTu
         private System.Windows.Forms.ComboBox cbbHoTenNV;
         private System.Windows.Forms.ComboBox cbbMaSoDDH;
         private System.Windows.Forms.BindingSource bdsMaSoDDH;
-        private DSTableAdapters.MaSoDDHTableAdapter maSoDDHTableAdapter;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.SimpleButton sbtnLuu;
         private DevExpress.XtraEditors.SimpleButton sbtnHieuChinh;

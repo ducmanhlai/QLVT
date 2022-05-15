@@ -59,7 +59,15 @@ namespace QuanLyVatTu
 
         private void bnt_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            Form f = CheckExists(typeof(FormInDanhSanhNhanVien));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                FormInDanhSanhNhanVien form = new FormInDanhSanhNhanVien();
+                form.MdiParent = this;
+                form.Show();
+            }    
         }
 
         private void ribbonControl1_Click(object sender, EventArgs e)

@@ -203,6 +203,16 @@ namespace QuanLyVatTu.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_pdf_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-pdf-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_remove_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-remove-48", resourceCulture);
@@ -246,6 +256,16 @@ namespace QuanLyVatTu.Properties {
         internal static System.Drawing.Bitmap inside_logout_icon {
             get {
                 object obj = ResourceManager.GetObject("inside-logout-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Preview_icon {
+            get {
+                object obj = ResourceManager.GetObject("Preview-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

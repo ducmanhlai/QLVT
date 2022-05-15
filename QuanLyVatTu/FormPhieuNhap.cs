@@ -34,9 +34,6 @@ namespace QuanLyVatTu
         private void FormPhieuNhap_Load(object sender, EventArgs e)
         {
             dS.EnforceConstraints = false;
-            // TODO: This line of code loads data into the 'dS.MaSoDHH' table. You can move, or remove it, as needed.
-            this.maSoDDHTableAdapter.Connection.ConnectionString = Program.connectionString;
-            this.maSoDDHTableAdapter.Fill(this.dS.MaSoDDH);
             // TODO: This line of code loads data into the 'dS.Vattu' table. You can move, or remove it, as needed.
             this.vattuTableAdapter.Connection.ConnectionString = Program.connectionString;
             this.vattuTableAdapter.Fill(this.dS.Vattu);
