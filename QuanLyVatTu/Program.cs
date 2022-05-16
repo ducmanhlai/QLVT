@@ -31,7 +31,7 @@ namespace QuanLyVatTu
         public static SqlConnection con = new SqlConnection();
         public static string connectionString = "";
         // lấy danh sách server phân mảnh.
-        public static string connectionStringPublisher = @"Data Source = DESKTOP-K1O601Q\SERVERMAIN; Initial Catalog = QLVT; Integrated Security = true";
+        public static string connectionStringPublisher = @"Data Source = DESKTOP-2HMOH0N; Initial Catalog = QLVT; Integrated Security = true";
         public static SqlDataReader myReader; // myRead
 
         /**********************************************
@@ -126,27 +126,27 @@ namespace QuanLyVatTu
                 Program.con.Open();
             SqlDataAdapter da = new SqlDataAdapter();
             da.Fill(dt);
-            con.Close();
+            Program.con.Close();
             return dt;
         }
 
         public static int ExecSqlNonQuery(string strLenh)
         {
-            SqlCommand sqlCmd = new SqlCommand();
+            SqlCommand sqlCmd = new SqlCommand(strLenh, Program.con);
             sqlCmd.CommandType = CommandType.Text;
-            sqlCmd.CommandTimeout = 600; // 10 phút
-            if (con.State == ConnectionState.Closed)
-                con.Open();
+            if (Program.con.State == ConnectionState.Closed)
+                Program.con.Open();
             try
             {
                 // yêu cầu sp chạy tự động bên csdl và không nhận kết quả trả về
                 sqlCmd.ExecuteNonQuery();
-                con.Close();
+                //con.Close();
                 return 0;
             }
             catch(SqlException ex)
             {
-                con.Close();
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK);
+                Program.con.Close();
                 return ex.State; // trạng thái lỗi gửi từ RAISERROR trong SQL Server qua
             }
         }

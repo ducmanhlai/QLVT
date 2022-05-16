@@ -83,8 +83,8 @@ namespace QuanLyVatTu
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.cbTTX = new System.Windows.Forms.CheckBox();
             this.txtMACN = new DevExpress.XtraEditors.TextEdit();
-            this.lUONGTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.nGAYSINHDateEdit = new DevExpress.XtraEditors.DateEdit();
+            this.teLuong = new DevExpress.XtraEditors.TextEdit();
+            this.deNgaySinh = new DevExpress.XtraEditors.DateEdit();
             this.txtDC = new System.Windows.Forms.TextBox();
             this.txtTEN = new System.Windows.Forms.TextBox();
             this.txtHO = new System.Windows.Forms.TextBox();
@@ -109,9 +109,9 @@ namespace QuanLyVatTu
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMACN.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lUONGTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nGAYSINHDateEdit.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nGAYSINHDateEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teLuong.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deNgaySinh.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deNgaySinh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPN)).BeginInit();
@@ -166,7 +166,6 @@ namespace QuanLyVatTu
             txtLUONG.Size = new System.Drawing.Size(52, 17);
             txtLUONG.TabIndex = 10;
             txtLUONG.Text = "LUONG";
-            txtLUONG.Click += new System.EventHandler(this.lUONGLabel_Click);
             // 
             // mACNLabel
             // 
@@ -266,6 +265,7 @@ namespace QuanLyVatTu
             // btnPhucHoi
             // 
             this.btnPhucHoi.Caption = "Phục hồi";
+            this.btnPhucHoi.Enabled = false;
             this.btnPhucHoi.Id = 5;
             this.btnPhucHoi.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.Undo_icon__1_;
             this.btnPhucHoi.Name = "btnPhucHoi";
@@ -551,9 +551,9 @@ namespace QuanLyVatTu
             this.panelControl2.Controls.Add(mACNLabel);
             this.panelControl2.Controls.Add(this.txtMACN);
             this.panelControl2.Controls.Add(txtLUONG);
-            this.panelControl2.Controls.Add(this.lUONGTextEdit);
+            this.panelControl2.Controls.Add(this.teLuong);
             this.panelControl2.Controls.Add(dtpNGAYSINH);
-            this.panelControl2.Controls.Add(this.nGAYSINHDateEdit);
+            this.panelControl2.Controls.Add(this.deNgaySinh);
             this.panelControl2.Controls.Add(txtDIACHI);
             this.panelControl2.Controls.Add(this.txtDC);
             this.panelControl2.Controls.Add(this.txtTEN);
@@ -579,7 +579,6 @@ namespace QuanLyVatTu
             this.cbTTX.TabIndex = 14;
             this.cbTTX.Text = "\r\n";
             this.cbTTX.UseVisualStyleBackColor = true;
-            this.cbTTX.CheckedChanged += new System.EventHandler(this.trangThaiXoaCheckBox_CheckedChanged);
             // 
             // txtMACN
             // 
@@ -592,35 +591,34 @@ namespace QuanLyVatTu
             this.txtMACN.Size = new System.Drawing.Size(156, 22);
             this.txtMACN.TabIndex = 12;
             // 
-            // lUONGTextEdit
+            // teLuong
             // 
-            this.lUONGTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsNV, "LUONG", true));
-            this.lUONGTextEdit.Location = new System.Drawing.Point(511, 113);
-            this.lUONGTextEdit.Margin = new System.Windows.Forms.Padding(4);
-            this.lUONGTextEdit.MenuManager = this.barManager1;
-            this.lUONGTextEdit.Name = "lUONGTextEdit";
-            this.lUONGTextEdit.Properties.DisplayFormat.FormatString = "n0";
-            this.lUONGTextEdit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.lUONGTextEdit.Properties.EditFormat.FormatString = "n0";
-            this.lUONGTextEdit.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.lUONGTextEdit.Size = new System.Drawing.Size(156, 22);
-            this.lUONGTextEdit.TabIndex = 11;
-            this.lUONGTextEdit.EditValueChanged += new System.EventHandler(this.lUONGTextEdit_EditValueChanged);
+            this.teLuong.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsNV, "LUONG", true));
+            this.teLuong.Location = new System.Drawing.Point(511, 113);
+            this.teLuong.Margin = new System.Windows.Forms.Padding(4);
+            this.teLuong.MenuManager = this.barManager1;
+            this.teLuong.Name = "teLuong";
+            this.teLuong.Properties.DisplayFormat.FormatString = "n0";
+            this.teLuong.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.teLuong.Properties.EditFormat.FormatString = "n0";
+            this.teLuong.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.teLuong.Size = new System.Drawing.Size(156, 22);
+            this.teLuong.TabIndex = 11;
             // 
-            // nGAYSINHDateEdit
+            // deNgaySinh
             // 
-            this.nGAYSINHDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsNV, "NGAYSINH", true));
-            this.nGAYSINHDateEdit.EditValue = null;
-            this.nGAYSINHDateEdit.Location = new System.Drawing.Point(196, 111);
-            this.nGAYSINHDateEdit.Margin = new System.Windows.Forms.Padding(4);
-            this.nGAYSINHDateEdit.MenuManager = this.barManager1;
-            this.nGAYSINHDateEdit.Name = "nGAYSINHDateEdit";
-            this.nGAYSINHDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.deNgaySinh.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsNV, "NGAYSINH", true));
+            this.deNgaySinh.EditValue = null;
+            this.deNgaySinh.Location = new System.Drawing.Point(196, 111);
+            this.deNgaySinh.Margin = new System.Windows.Forms.Padding(4);
+            this.deNgaySinh.MenuManager = this.barManager1;
+            this.deNgaySinh.Name = "deNgaySinh";
+            this.deNgaySinh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.nGAYSINHDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.deNgaySinh.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.nGAYSINHDateEdit.Size = new System.Drawing.Size(156, 22);
-            this.nGAYSINHDateEdit.TabIndex = 9;
+            this.deNgaySinh.Size = new System.Drawing.Size(156, 22);
+            this.deNgaySinh.TabIndex = 9;
             // 
             // txtDC
             // 
@@ -657,7 +655,6 @@ namespace QuanLyVatTu
             this.txtMANV.Name = "txtMANV";
             this.txtMANV.Size = new System.Drawing.Size(124, 23);
             this.txtMANV.TabIndex = 1;
-            this.txtMANV.TextChanged += new System.EventHandler(this.txtMANV_TextChanged);
             // 
             // bdsDH
             // 
@@ -704,9 +701,9 @@ namespace QuanLyVatTu
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMACN.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lUONGTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nGAYSINHDateEdit.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nGAYSINHDateEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teLuong.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deNgaySinh.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deNgaySinh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPN)).EndInit();
@@ -749,8 +746,8 @@ namespace QuanLyVatTu
         private DSTableAdapters.NhanVienTableAdapter nhanVienTableAdapter;
         private DSTableAdapters.TableAdapterManager tableAdapterManager;
         private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.TextEdit lUONGTextEdit;
-        private DevExpress.XtraEditors.DateEdit nGAYSINHDateEdit;
+        private DevExpress.XtraEditors.TextEdit teLuong;
+        private DevExpress.XtraEditors.DateEdit deNgaySinh;
         private System.Windows.Forms.TextBox txtDC;
         private System.Windows.Forms.TextBox txtTEN;
         private System.Windows.Forms.TextBox txtHO;

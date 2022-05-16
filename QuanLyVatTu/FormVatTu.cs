@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
+
 
 namespace QuanLyVatTu
 {
@@ -14,6 +16,12 @@ namespace QuanLyVatTu
     {
         int vitri = 0;
         bool dangThem = false;
+        Stack phucHoiList = new Stack();
+        string cauTruyVan = "";
+        string MaVT = "";
+        string TenVT = "";
+        string DVT = "";
+        string SoLT = "";
         public FormVatTu()
         {
             InitializeComponent();
@@ -86,15 +94,33 @@ namespace QuanLyVatTu
 
         private void btnReset_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            try
+            if (btnthem.Enabled == true)
             {
-                this.vattuTableAdapter.Fill(this.dS.Vattu);
+                try
+                {
+                    this.vattuTableAdapter.Fill(this.dS.Vattu);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi reset: " + ex.Message, "", MessageBoxButtons.OK);
+                    return;
+                }
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi reset: " + ex.Message, "", MessageBoxButtons.OK);
-                return;
-            }
+                if(dangThem == true)
+                {
+                    txtTenVT.Text = txtMaVT.Text = txtDVT.Text =  "";
+                    teSoLuongTon.Text = "0";
+                }
+                else
+                {
+                    txtMaVT.Text = MaVT;
+                    txtTenVT.Text = TenVT;
+                    txtDVT.Text = DVT;
+                    teSoLuongTon.Text = SoLT;
+                }    
+            }    
         }
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -151,9 +177,13 @@ namespace QuanLyVatTu
             {
                 try
                 {
+                    cauTruyVan = $"insert into Vattu(MAVT, TENVT, DVT, SOLUONGTON) VALUES('{txtMaVT.Text}', N'{txtTenVT.Text}'," +
+                                $"N'{txtDVT.Text}', {teSoLuongTon.Text})";
                     bdsVT.RemoveCurrent();
                     this.vattuTableAdapter.Connection.ConnectionString = Program.connectionString;
                     this.vattuTableAdapter.Update(this.dS.Vattu);
+                    phucHoiList.Push(cauTruyVan);
+                    btnPhucHoi.Enabled = true;
                 }
                 catch(Exception ex)
                 {
@@ -173,28 +203,49 @@ namespace QuanLyVatTu
             bdsVT.AddNew();
             panelControl2.Enabled = true;
             txtMaVT.Enabled = true;
-            btnHieuChinh.Enabled = btnXoa.Enabled = btnthem.Enabled = btnThoat.Enabled = btnReset.Enabled = false;
+            btnHieuChinh.Enabled = btnXoa.Enabled = btnthem.Enabled = btnThoat.Enabled = false;
             gcVatTu.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
         }
 
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            bdsVT.CancelEdit();
+            
             if (btnthem.Enabled == false)
+            {
+                bdsVT.CancelEdit();
                 bdsVT.Position = vitri;
-            gcVatTu.Enabled = true;
-            panelControl2.Enabled = false;
-            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnThoat.Enabled = btnReset.Enabled = true;
-            btnLuu.Enabled = btnPhucHoi.Enabled = false;
+                gcVatTu.Enabled = true;
+                panelControl2.Enabled = false;
+                btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnThoat.Enabled = btnReset.Enabled = true;
+                //btnPhucHoi.Enabled = true;
+                dangThem = false;
+                btnLuu.Enabled = false;
+                if (phucHoiList.Count == 0)
+                    btnPhucHoi.Enabled = false;
+                return;
+            }
+            string cauTruyVan = phucHoiList.Pop().ToString();
+            int status = Program.ExecSqlNonQuery(cauTruyVan);
+            this.vattuTableAdapter.Connection.ConnectionString = Program.connectionString;
+            this.vattuTableAdapter.Fill(this.dS.Vattu);
+            if (phucHoiList.Count == 0)
+                btnPhucHoi.Enabled = false;
         }
 
         private void btnHieuChinh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            MaVT = txtMaVT.Text;
+            TenVT = txtTenVT.Text;
+            DVT = txtDVT.Text;
+            SoLT = teSoLuongTon.Text;
+            cauTruyVan = $"update Vattu " +
+                        $"set TENVT = N'{txtTenVT.Text}', DVT = N'{txtDVT.Text}', SOLUONGTON = {teSoLuongTon.Text} " +
+                        $"where MAVT = '{txtMaVT.Text}'";
             vitri = bdsVT.Position;
             gcVatTu.Enabled = false;
             panelControl2.Enabled = true;
-            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnThoat.Enabled = btnReset.Enabled = false;
+            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnThoat.Enabled =  false;
             btnPhucHoi.Enabled = btnLuu.Enabled = true;
             txtMaVT.Enabled = false;
         }
@@ -249,28 +300,34 @@ namespace QuanLyVatTu
                 }
                 else
                 {
-                    if(MessageBox.Show("Bạn thật sự muốn thêm mới vật tư này?", "Xác Nhận", MessageBoxButtons.OKCancel)
+                    if (MessageBox.Show("Bạn thật sự muốn thêm mới vật tư này?", "Xác Nhận", MessageBoxButtons.OKCancel)
                         == DialogResult.OK)
                     {
                         try
                         {
+                            cauTruyVan = $"delete from Vattu where MAVT = '{txtMaVT.Text}'";
                             bdsVT.EndEdit();
                             bdsVT.ResetCurrentItem();
                             this.vattuTableAdapter.Connection.ConnectionString = Program.connectionString;
                             this.vattuTableAdapter.Update(this.dS.Vattu);
+                            MessageBox.Show("Thêm vật tư thàng công!", "", MessageBoxButtons.OK);
                             dangThem = false;
+                            //btnPhucHoi.
+                            phucHoiList.Push(cauTruyVan);
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             MessageBox.Show("Lỗi ghi vật tư " + ex.Message, "", MessageBoxButtons.OK);
                             return;
                         }
-                    }    
+                    }
+                    else
+                        return;
                 }
             }
             else
             {
-                if(MessageBox.Show("Bạn thật sự muốn lưu thay đổi này?", "Xác Nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show("Bạn thật sự muốn lưu thay đổi này?", "Xác Nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     try
                     {
@@ -278,16 +335,20 @@ namespace QuanLyVatTu
                         bdsVT.ResetCurrentItem();
                         this.vattuTableAdapter.Connection.ConnectionString = Program.connectionString;
                         this.vattuTableAdapter.Update(this.dS.Vattu);
+                        MessageBox.Show("Hiệu chỉnh vật tư thành công!", "", MessageBoxButtons.OK);
+                        phucHoiList.Push(cauTruyVan);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show("Lỗi lưu dữ liệu " + ex.Message, "", MessageBoxButtons.OK);
                         return;
                     }
-                }    
+                }
+                else
+                    return;
             }
             gcVatTu.Enabled = true;
-            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = btnReset.Enabled = true;
+            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnThoat.Enabled = btnReset.Enabled = true;
             panelControl2.Enabled = btnLuu.Enabled = false;
         }
     }
