@@ -982,7 +982,7 @@ namespace QuanLyVatTu
             ((System.ComponentModel.ISupportInitialize)(this.deNgay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teMaPN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsVT)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsMaSoDDH)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.bdsMaSoDDH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcCTPN)).EndInit();

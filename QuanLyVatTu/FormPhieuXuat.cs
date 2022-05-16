@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace QuanLyVatTu
 {
@@ -16,6 +17,12 @@ namespace QuanLyVatTu
         int viTri = 0;
         bool dangThemPX = false;
         bool dangThemCTPX = false;
+        string cauTruyVan = "";
+        DateTime ngay;
+        string hoTenKH = "";
+        string maKho = "";
+        string manv = "";
+        Stack phucHoiList = new Stack();
         public FormPhieuXuat()
         {
             InitializeComponent();
@@ -105,32 +112,64 @@ namespace QuanLyVatTu
 
         private void btnReset_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            try
+            if (btnHieuChinh.Enabled == true)
             {
-                this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
+                try
+                {
+                    this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi kết nối về server " + ex.Message, "", MessageBoxButtons.OK);
+                    return;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi kết nối về server " + ex.Message, "", MessageBoxButtons.OK);
-                return;
-            }
+                if(dangThemPX == true)
+                {
+                    teMaPX.Text = "";
+                    txtHoTenKH.Text = "";
+                    deNgay.EditValue = DateTime.Now;
+                }
+                else
+                {
+                    deNgay.EditValue = ngay;
+                    cbbHoTenNV.SelectedValue = txtMaNV.Text = manv;
+                    cbbTenKho.SelectedValue = txtMaKho.Text = maKho;
+                    txtHoTenKH.Text = hoTenKH;
+                }
+            }    
         }
 
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            bdsPX.CancelEdit();
+            
             if (btnthem.Enabled == false)
+            {
+                bdsPX.CancelEdit();
                 bdsPX.Position = viTri;
-            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnReset.Enabled = btnThoat.Enabled = true;
-            btnPhucHoi.Enabled = btnLuu.Enabled = false;
-            gcPX.Enabled = true;
-            panelControl2.Enabled = false;
-            panelControl3.Enabled = true;
+                btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnReset.Enabled = btnThoat.Enabled = true;
+                btnLuu.Enabled = false;
+                gcPX.Enabled = true;
+                panelControl2.Enabled = false;
+                panelControl3.Enabled = true;
+                dangThemPX = false;
+                if (phucHoiList.Count == 0)
+                    btnPhucHoi.Enabled = false;
+                return;
+            }
+            string cauTruyVan = phucHoiList.Pop().ToString();
+            int status = Program.ExecSqlNonQuery(cauTruyVan);
+            this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
+            this.phieuXuatTableAdapter.Fill(this.dS.PhieuXuat);
+            if (phucHoiList.Count == 0)
+                btnPhucHoi.Enabled = false;
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            
             if (bdsPX.Count == 0)
             {
                 MessageBox.Show("Không có phiếu xuất nào để xóa!", "", MessageBoxButtons.OK);
@@ -146,10 +185,14 @@ namespace QuanLyVatTu
             {
                 try
                 {
+                    ngay = (DateTime)((DataRowView)bdsPX[bdsPX.Position])["NGAY"];
+                    cauTruyVan = $"insert into PhieuXuat(MAPX, NGAY, HOTENKH, MAKHO, MANV) values('{teMaPX.Text}', '{ngay.ToString("yyyy-MM-dd")}', " +
+                        $"N'{txtHoTenKH.Text}', '{txtMaKho.Text}', '{txtMaNV.Text}')";
                     viTri = bdsPX.Position;
                     bdsPX.RemoveCurrent();
                     this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
                     this.phieuXuatTableAdapter.Update(this.dS.PhieuXuat);
+                    phucHoiList.Push(cauTruyVan);
                     MessageBox.Show("Xóa phiếu xuất thành công!", "", MessageBoxButtons.OK);
                 }
                 catch (Exception ex)
@@ -163,10 +206,17 @@ namespace QuanLyVatTu
 
         private void btnHieuChinh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            ngay = (DateTime)((DataRowView)bdsPX[bdsPX.Position])["NGAY"];
+            hoTenKH = txtHoTenKH.Text;
+            maKho = txtMaKho.Text;
+            manv = txtMaNV.Text;
+            cauTruyVan = $"update PhieuXuat " +
+                        $"set NGAY = '{ngay.ToString("yyyy-MM-dd")}', HOTENKH = N'{txtHoTenKH.Text}', MAKHO = '{txtMaKho.Text}', " +
+                        $"MANV = {txtMaNV.Text} where MAPX = '{teMaPX.Text}'";
             viTri = bdsPX.Position;
             panelControl2.Enabled = true;
             gcPX.Enabled = false;
-            btnHieuChinh.Enabled = btnthem.Enabled = btnReset.Enabled = btnXoa.Enabled = btnThoat.Enabled = false;
+            btnHieuChinh.Enabled = btnthem.Enabled = btnXoa.Enabled = btnThoat.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
             teMaPX.Enabled = false;
             deNgay.Enabled = txtHoTenKH.Enabled = cbbHoTenNV.Enabled = cbbTenKho.Enabled = true;
@@ -185,12 +235,13 @@ namespace QuanLyVatTu
             bdsPX.AddNew();
             dangThemPX = true;
             gcPX.Enabled = false;
-            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnReset.Enabled = btnThoat.Enabled = false;
+            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnThoat.Enabled = false;
             btnLuu.Enabled = btnPhucHoi.Enabled = true;
             panelControl3.Enabled = false;
             gcCTPX.Enabled = false;
             teMaPX.Enabled = deNgay.Enabled = txtHoTenKH.Enabled = cbbHoTenNV.Enabled = cbbTenKho.Enabled = true;
             cbbMaVT.Enabled = nmSoLuong.Enabled = seDonGia.Enabled = false;
+            deNgay.EditValue = DateTime.Now;
         }
 
         private void cbbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
@@ -359,17 +410,13 @@ namespace QuanLyVatTu
                     {
                         try
                         {
+                            cauTruyVan = $"delete from PhieuXuat where MAPX = '{teMaPX.Text}'";
                             bdsPX.EndEdit();
                             bdsPX.ResetCurrentItem();
                             this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
                             this.phieuXuatTableAdapter.Update(this.dS.PhieuXuat);
                             MessageBox.Show("Thêm phiếu xuất thành công!", "", MessageBoxButtons.OK);
-                            gcPX.Enabled = true;
-                            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnReset.Enabled = btnThoat.Enabled = true;
-                            btnLuu.Enabled = btnPhucHoi.Enabled = false;
-                            panelControl3.Enabled = true;
-                            gcCTPX.Enabled = true;
-                            panelControl2.Enabled = false;
+                            phucHoiList.Push(cauTruyVan);
                             dangThemPX = false;
                         }
                         catch (Exception ex)
@@ -379,6 +426,8 @@ namespace QuanLyVatTu
                             return;
                         }
                     }
+                    else
+                        return;
                 }
             }
             else
@@ -393,12 +442,7 @@ namespace QuanLyVatTu
                         this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connectionString;
                         this.phieuXuatTableAdapter.Update(this.dS.PhieuXuat);
                         MessageBox.Show("Hiệu chỉnh phiếu xuất thành công!", "", MessageBoxButtons.OK);
-                        gcPX.Enabled = true;
-                        btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnReset.Enabled = btnThoat.Enabled = true;
-                        btnLuu.Enabled = btnPhucHoi.Enabled = false;
-                        panelControl3.Enabled = true;
-                        gcCTPX.Enabled = true;
-                        panelControl2.Enabled = false;
+                        phucHoiList.Push(cauTruyVan);
                         //dangThemPX = false;
                     }
                     catch (Exception ex)
@@ -407,7 +451,15 @@ namespace QuanLyVatTu
                         return;
                     }
                 }
+                else
+                    return;
             }
+            gcPX.Enabled = true;
+            btnthem.Enabled = btnXoa.Enabled = btnHieuChinh.Enabled = btnThoat.Enabled = true;
+            btnLuu.Enabled = false;
+            panelControl3.Enabled = true;
+            gcCTPX.Enabled = true;
+            panelControl2.Enabled = false;
         }
 
         private void sbtnLuu_Click(object sender, EventArgs e)
@@ -455,6 +507,7 @@ namespace QuanLyVatTu
                 btnReset.Enabled =  btnPhucHoi.Enabled = btnThoat.Enabled = true;
             panelControl2.Enabled = false;
             sbtnHieuChinh.Enabled = sbtnXoa.Enabled = sbtnThem.Enabled = true;
+            dangThemCTPX = false;
         }
     }
 }

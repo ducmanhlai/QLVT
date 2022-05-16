@@ -166,7 +166,6 @@ namespace QuanLyVatTu
             txtLUONG.Size = new System.Drawing.Size(52, 17);
             txtLUONG.TabIndex = 10;
             txtLUONG.Text = "LUONG";
-            txtLUONG.Click += new System.EventHandler(this.lUONGLabel_Click);
             // 
             // mACNLabel
             // 
@@ -266,6 +265,7 @@ namespace QuanLyVatTu
             // btnPhucHoi
             // 
             this.btnPhucHoi.Caption = "Phục hồi";
+            this.btnPhucHoi.Enabled = false;
             this.btnPhucHoi.Id = 5;
             this.btnPhucHoi.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.Undo_icon__1_;
             this.btnPhucHoi.Name = "btnPhucHoi";
@@ -579,7 +579,6 @@ namespace QuanLyVatTu
             this.cbTTX.TabIndex = 14;
             this.cbTTX.Text = "\r\n";
             this.cbTTX.UseVisualStyleBackColor = true;
-            this.cbTTX.CheckedChanged += new System.EventHandler(this.trangThaiXoaCheckBox_CheckedChanged);
             // 
             // txtMACN
             // 
@@ -605,7 +604,6 @@ namespace QuanLyVatTu
             this.teLuong.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.teLuong.Size = new System.Drawing.Size(156, 22);
             this.teLuong.TabIndex = 11;
-            this.teLuong.EditValueChanged += new System.EventHandler(this.lUONGTextEdit_EditValueChanged);
             // 
             // deNgaySinh
             // 
@@ -657,7 +655,6 @@ namespace QuanLyVatTu
             this.txtMANV.Name = "txtMANV";
             this.txtMANV.Size = new System.Drawing.Size(124, 23);
             this.txtMANV.TabIndex = 1;
-            this.txtMANV.TextChanged += new System.EventHandler(this.txtMANV_TextChanged);
             // 
             // bdsDH
             // 
