@@ -262,7 +262,7 @@ namespace QuanLyVatTu
             cbbMaVT.ValueMember = "MAVT";
             gcPX.Enabled = false;
             btnHieuChinh.Enabled = btnXoa.Enabled = btnthem.Enabled =
-                btnReset.Enabled = btnLuu.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = false;
+            btnReset.Enabled = btnLuu.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = false;
             panelControl2.Enabled = true;
             sbtnHieuChinh.Enabled = sbtnXoa.Enabled = sbtnThem.Enabled = false;
             sbtnLuu.Enabled = sbtnHoanTac.Enabled = true;
@@ -456,5 +456,7 @@ namespace QuanLyVatTu
             panelControl2.Enabled = false;
             sbtnHieuChinh.Enabled = sbtnXoa.Enabled = sbtnThem.Enabled = true;
         }
+
+        
     }
 }
