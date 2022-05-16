@@ -195,6 +195,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReportForm\BaoCaoTinhTrangHoatDongCuaNVTheoThang.resx">
+      <DependentUpon>BaoCaoTinhTrangHoatDongCuaNVTheoThang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForm\InBangKeChiTietSL_TriGiaNhapXuat.resx">
+      <DependentUpon>InBangKeChiTietSL_TriGiaNhapXuat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForm\InDanhSanhNhanVien.resx">
       <DependentUpon>InDanhSanhNhanVien.cs</DependentUpon>
     </EmbeddedResource>
