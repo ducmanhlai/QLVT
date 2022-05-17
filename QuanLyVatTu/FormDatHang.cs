@@ -169,6 +169,7 @@ namespace QuanLyVatTu
             try
             {
                 this.datHangTableAdapter.Fill(this.dS.DatHang);
+                this.cTDDHTableAdapter.Fill(this.dS.CTDDH);
             }
             catch (Exception ex)
             {

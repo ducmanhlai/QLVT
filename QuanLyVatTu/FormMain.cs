@@ -112,8 +112,15 @@ namespace QuanLyVatTu
 
         private void bntTaoTK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-//            Form f = new FormTaoTK();
-//           f.Show();
+            Form f = CheckExists(typeof(FormTaoLogin));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                Form from = new FormTaoLogin();
+                from.MdiParent = this;
+                from.Show();
+            }
         }
 
         private void bntNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

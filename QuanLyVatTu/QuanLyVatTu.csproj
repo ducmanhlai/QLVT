@@ -78,6 +78,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormTaoLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTaoLogin.Designer.cs">
+      <DependentUpon>FormTaoLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForm\BaoCaoTinhTrangHoatDongCuaNVTheoThang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPhieuXuat.resx">
       <DependentUpon>FormPhieuXuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTaoLogin.resx">
+      <DependentUpon>FormTaoLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVatTu.resx">
       <DependentUpon>FormVatTu.cs</DependentUpon>
