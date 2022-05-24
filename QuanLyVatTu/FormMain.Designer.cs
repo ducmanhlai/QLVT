@@ -78,29 +78,29 @@ namespace QuanLyVatTu
             this.MANV,
             this.HoTen,
             this.NHOM});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 476);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 480);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 17, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1162, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1162, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // MANV
             // 
             this.MANV.Name = "MANV";
-            this.MANV.Size = new System.Drawing.Size(102, 20);
+            this.MANV.Size = new System.Drawing.Size(82, 17);
             this.MANV.Text = "Mã Nhân Viên";
             // 
             // HoTen
             // 
             this.HoTen.Name = "HoTen";
-            this.HoTen.Size = new System.Drawing.Size(56, 20);
+            this.HoTen.Size = new System.Drawing.Size(44, 17);
             this.HoTen.Text = "Họ Tên";
             // 
             // NHOM
             // 
             this.NHOM.Name = "NHOM";
-            this.NHOM.Size = new System.Drawing.Size(50, 20);
+            this.NHOM.Size = new System.Drawing.Size(41, 17);
             this.NHOM.Text = "Nhóm";
             // 
             // ribbonControl1
@@ -136,7 +136,7 @@ namespace QuanLyVatTu
             this.pageTaiKhoan,
             this.pageNhanVien,
             this.pageBaoCao});
-            this.ribbonControl1.Size = new System.Drawing.Size(1162, 193);
+            this.ribbonControl1.Size = new System.Drawing.Size(1162, 158);
             this.ribbonControl1.Click += new System.EventHandler(this.ribbonControl1_Click);
             // 
             // bntDangNhap
@@ -207,6 +207,7 @@ namespace QuanLyVatTu
             this.barButtonItem3.LargeWidth = 100;
             this.barButtonItem3.Name = "barButtonItem3";
             this.barButtonItem3.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
             // 
             // bntCTPX
             // 
@@ -374,7 +375,7 @@ namespace QuanLyVatTu
             // FormMain
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1162, 502);
             this.Controls.Add(this.statusStrip1);

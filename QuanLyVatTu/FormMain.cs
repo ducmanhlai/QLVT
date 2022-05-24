@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraReports.UI;
 
 namespace QuanLyVatTu
 {
@@ -204,6 +205,22 @@ namespace QuanLyVatTu
                 form.MdiParent = this;
                 form.Show();
             }
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = CheckExists(typeof(ReportVatTu));
+            if (f!=null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                 ReportVatTu form = new ReportVatTu();
+                ReportPrintTool print = new ReportPrintTool(form);
+                print.ShowPreviewDialog();
+
+            }    
         }
     }
 }

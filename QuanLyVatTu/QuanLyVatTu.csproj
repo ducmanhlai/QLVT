@@ -166,6 +166,12 @@
     <Compile Include="ReportForm\ReportInDanhSanhNhanVien.Designer.cs">
       <DependentUpon>ReportInDanhSanhNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportVatTu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportVatTu.Designer.cs">
+      <DependentUpon>ReportVatTu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormDatHang.resx">
       <DependentUpon>FormDatHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForm\ReportInDanhSanhNhanVien.resx">
       <DependentUpon>ReportInDanhSanhNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportVatTu.resx">
+      <DependentUpon>ReportVatTu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DS.xsc">
       <DependentUpon>DS.xsd</DependentUpon>
