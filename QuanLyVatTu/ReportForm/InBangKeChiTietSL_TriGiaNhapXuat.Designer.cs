@@ -1,7 +1,7 @@
 ﻿
 namespace QuanLyVatTu
 {
-    partial class InBangKeChiTietSL_TriGiaNhapXuat
+    partial class FormInBangKeChiTietSL_TriGiaNhapXuat
     {
         /// <summary>
         /// Required designer variable.
@@ -41,9 +41,22 @@ namespace QuanLyVatTu
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.label2 = new System.Windows.Forms.Label();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.deDN = new DevExpress.XtraEditors.DateEdit();
+            this.deTN = new DevExpress.XtraEditors.DateEdit();
+            this.cbbLoaiPhieu = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deDN.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDN.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deTN.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deTN.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -79,6 +92,7 @@ namespace QuanLyVatTu
             this.btnXemTruoc.Id = 0;
             this.btnXemTruoc.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.Preview_icon;
             this.btnXemTruoc.Name = "btnXemTruoc";
+            this.btnXemTruoc.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXemTruoc_ItemClick);
             // 
             // btnThoat
             // 
@@ -86,6 +100,7 @@ namespace QuanLyVatTu
             this.btnThoat.Id = 2;
             this.btnThoat.ImageOptions.Image = global::QuanLyVatTu.Properties.Resources.inside_logout_icon;
             this.btnThoat.Name = "btnThoat";
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
             // bar3
             // 
@@ -142,8 +157,9 @@ namespace QuanLyVatTu
             this.panelControl1.Controls.Add(this.label2);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 70);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1922, 100);
+            this.panelControl1.Size = new System.Drawing.Size(1922, 125);
             this.panelControl1.TabIndex = 6;
             // 
             // label2
@@ -152,30 +168,125 @@ namespace QuanLyVatTu
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(295, 31);
+            this.label2.Location = new System.Drawing.Point(420, 40);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1066, 38);
+            this.label2.Size = new System.Drawing.Size(791, 38);
             this.label2.TabIndex = 0;
-            this.label2.Text = "IN BẢN KÊ CHI TIẾT SỐ LƯỢNG – TRỊ GIÁ HÀNG NHẬP HOẶC XUẤT";
+            this.label2.Text = "CHI TIẾT SỐ LƯỢNG – TRỊ GIÁ HÀNG NHẬP XUẤT";
             // 
-            // InBangKeChiTietSL_TriGiaNhapXuat
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.label4);
+            this.panelControl2.Controls.Add(this.label3);
+            this.panelControl2.Controls.Add(this.label1);
+            this.panelControl2.Controls.Add(this.deDN);
+            this.panelControl2.Controls.Add(this.deTN);
+            this.panelControl2.Controls.Add(this.cbbLoaiPhieu);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl2.Location = new System.Drawing.Point(0, 195);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(1922, 308);
+            this.panelControl2.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(979, 194);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(73, 17);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "ĐẾN NGÀY";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(330, 191);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 17);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "TỪ NGÀY";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(330, 80);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 17);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "LOẠI PHIẾU";
+            // 
+            // deDN
+            // 
+            this.deDN.EditValue = null;
+            this.deDN.Location = new System.Drawing.Point(1105, 190);
+            this.deDN.Margin = new System.Windows.Forms.Padding(4);
+            this.deDN.MenuManager = this.barManager1;
+            this.deDN.Name = "deDN";
+            this.deDN.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDN.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDN.Size = new System.Drawing.Size(244, 22);
+            this.deDN.TabIndex = 2;
+            // 
+            // deTN
+            // 
+            this.deTN.EditValue = null;
+            this.deTN.Location = new System.Drawing.Point(449, 188);
+            this.deTN.Margin = new System.Windows.Forms.Padding(4);
+            this.deTN.MenuManager = this.barManager1;
+            this.deTN.Name = "deTN";
+            this.deTN.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deTN.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deTN.Size = new System.Drawing.Size(246, 22);
+            this.deTN.TabIndex = 1;
+            // 
+            // cbbLoaiPhieu
+            // 
+            this.cbbLoaiPhieu.FormattingEnabled = true;
+            this.cbbLoaiPhieu.Items.AddRange(new object[] {
+            "Phiếu Nhập",
+            "Phiếu Xuất"});
+            this.cbbLoaiPhieu.Location = new System.Drawing.Point(449, 76);
+            this.cbbLoaiPhieu.Margin = new System.Windows.Forms.Padding(4);
+            this.cbbLoaiPhieu.Name = "cbbLoaiPhieu";
+            this.cbbLoaiPhieu.Size = new System.Drawing.Size(184, 24);
+            this.cbbLoaiPhieu.TabIndex = 0;
+            // 
+            // FormInBangKeChiTietSL_TriGiaNhapXuat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1922, 762);
+            this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "InBangKeChiTietSL_TriGiaNhapXuat";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "FormInBangKeChiTietSL_TriGiaNhapXuat";
             this.Text = "InBangKeChiTietSL_TriGiaNhapXuat";
+            this.Load += new System.EventHandler(this.FormInBangKeChiTietSL_TriGiaNhapXuat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deDN.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDN.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deTN.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deTN.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +305,12 @@ namespace QuanLyVatTu
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private System.Windows.Forms.ComboBox cbbLoaiPhieu;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.DateEdit deDN;
+        private DevExpress.XtraEditors.DateEdit deTN;
     }
 }

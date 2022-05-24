@@ -207,6 +207,7 @@ namespace QuanLyVatTu
             // 
             // cbbChiNhanh
             // 
+            this.cbbChiNhanh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbChiNhanh.FormattingEnabled = true;
             this.cbbChiNhanh.Location = new System.Drawing.Point(512, 33);
             this.cbbChiNhanh.Margin = new System.Windows.Forms.Padding(4);
