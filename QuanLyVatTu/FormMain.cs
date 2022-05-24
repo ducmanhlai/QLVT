@@ -207,6 +207,7 @@ namespace QuanLyVatTu
             }
         }
 
+<<<<<<< HEAD
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Form f = CheckExists(typeof(ReportVatTu));
@@ -221,6 +222,32 @@ namespace QuanLyVatTu
                 print.ShowPreviewDialog();
 
             }    
+=======
+        private void bntCTPX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = CheckExists(typeof(FormInBangKeChiTietSL_TriGiaNhapXuat));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                Form form = new FormInBangKeChiTietSL_TriGiaNhapXuat();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
+
+        private void bntHDNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = CheckExists(typeof(FormBaoCaoTinhTrangHoatDongCuaNVTheoThang));
+            if (f != null)
+                f.Activate();
+            else
+            {
+                Form form = new FormBaoCaoTinhTrangHoatDongCuaNVTheoThang();
+                form.MdiParent = this;
+                form.Show();
+            }
+>>>>>>> a3db440f9dbafbb234d7062f3244318a2c2fcfb2
         }
     }
 }

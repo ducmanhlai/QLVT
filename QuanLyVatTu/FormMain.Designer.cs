@@ -129,7 +129,7 @@ namespace QuanLyVatTu
             this.btnPX,
             this.btnDDH});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ribbonControl1.MaxItemId = 22;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -217,6 +217,7 @@ namespace QuanLyVatTu
             this.bntCTPX.LargeWidth = 100;
             this.bntCTPX.Name = "bntCTPX";
             this.bntCTPX.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bntCTPX.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bntCTPX_ItemClick);
             // 
             // barButtonItem2
             // 
@@ -241,6 +242,7 @@ namespace QuanLyVatTu
             this.bntHDNV.LargeWidth = 100;
             this.bntHDNV.Name = "bntHDNV";
             this.bntHDNV.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bntHDNV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bntHDNV_ItemClick);
             // 
             // bntTHNX
             // 
